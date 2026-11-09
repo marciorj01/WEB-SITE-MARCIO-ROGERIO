@@ -18,8 +18,6 @@ import { Leads } from './collections/Leads'
 import { NewsletterSubscribers } from './collections/NewsletterSubscribers'
 import { Brand } from './globals/Brand'
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
-
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
