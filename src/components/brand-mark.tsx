@@ -1,8 +1,9 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 export function BrandMark({
-  name = 'Vértice',
-  tagline = 'Consultoria imobiliária',
+  name = 'Marcio Rogério',
+  tagline = 'Corretor de Imóveis',
   light = false,
   compact = false,
 }: {
@@ -11,25 +12,34 @@ export function BrandMark({
   light?: boolean
   compact?: boolean
 }) {
+  const displayName = name || 'Marcio Rogério'
+  const displayTagline = tagline || 'Corretor de Imóveis'
+
   return (
     <Link
       href="/"
-      aria-label={`${name || 'Vértice'} — início`}
+      aria-label={`${displayName} — início`}
       className={`inline-flex shrink-0 items-center gap-3.5 ${light ? 'text-ivory' : 'text-navy'}`}
     >
-      <svg width="35" height="43" viewBox="0 0 35 43" fill="none" aria-hidden="true">
-        <path d="M2 5 17.5 37 33 5M7.5 5l10 21 10-21" stroke="currentColor" strokeWidth="1.2" />
-        <path d="M17.5 26v12" stroke="#B8A181" strokeWidth="1.3" />
-      </svg>
+      <div className="relative flex h-11 w-11 shrink-0 items-center justify-center">
+        <Image
+          src="/logo-mr.png"
+          alt="MR Monograma"
+          width={44}
+          height={44}
+          className={`h-full w-auto object-contain ${light ? 'brightness-0 invert opacity-95' : 'opacity-90'}`}
+          priority
+        />
+      </div>
       <span>
-        <span className="block text-[23px] leading-none font-medium uppercase tracking-[.22em]">
-          {name || 'Vértice'}
+        <span className="block text-[20px] leading-none font-medium uppercase tracking-[.18em]">
+          {displayName}
         </span>
         {!compact && (
           <span
-            className={`mt-2 block text-[6.5px] uppercase tracking-[.27em] ${light ? 'text-champagne-light' : 'text-muted'}`}
+            className={`mt-2 block text-[7px] uppercase tracking-[.24em] ${light ? 'text-champagne-light' : 'text-muted'}`}
           >
-            {tagline || 'Consultoria imobiliária'}
+            {displayTagline}
           </span>
         )}
       </span>

@@ -9,12 +9,12 @@ import { Header } from '@/components/header'
 import { Footer, FloatingContact } from '@/components/footer'
 import { Motion } from '@/components/motion'
 
-const defaultTitle = 'Vértice | Imóveis singulares. Novas perspectivas.'
+const defaultTitle = 'Marcio Rogério | Corretor de Imóveis | CRECI F-59.138-F'
 const title = makeSiteSettings.title ?? defaultTitle
 const description =
   makeSiteSettings.description ??
-  'Curadoria imobiliária, arquitetura e inteligência de mercado. Uma nova perspectiva para comprar, investir ou vender seu imóvel.'
-const favicon = makeSiteSettings.icons?.icon ?? '/vertice.svg'
+  'Consultoria imobiliária de alto padrão, curadoria exclusiva e inteligência de mercado. Uma nova perspectiva para comprar, investir ou vender seu imóvel.'
+const favicon = makeSiteSettings.icons?.icon ?? '/logo-mr.png'
 const socialImage = makeSiteSettings.openGraph?.image
 const googleAnalyticsId = sanitizeHtmlAttribute(makeSiteSettings.analytics?.googleAnalyticsId)
 

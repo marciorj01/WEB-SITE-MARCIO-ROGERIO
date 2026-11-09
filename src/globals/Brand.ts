@@ -9,8 +9,8 @@ export const Brand: GlobalConfig = {
   access: { read: () => true, update: adminOnly },
   hooks: { afterChange: [revalidateBrand] },
   fields: [
-    { name: 'name', label: 'Marca', type: 'text', defaultValue: 'Vértice' },
-    { name: 'tagline', label: 'Assinatura', type: 'text', defaultValue: 'Consultoria imobiliária' },
+    { name: 'name', label: 'Marca', type: 'text', defaultValue: 'Marcio Rogério' },
+    { name: 'tagline', label: 'Assinatura', type: 'text', defaultValue: 'Corretor de Imóveis' },
     { name: 'demoNotice', label: 'Aviso de demonstração', type: 'textarea' },
     {
       name: 'whatsapp',
@@ -21,7 +21,12 @@ export const Brand: GlobalConfig = {
         !value || /^\d{10,15}$/.test(value) || 'Use somente números, incluindo país e DDD.',
     },
     { name: 'email', label: 'E-mail de contato real', type: 'email' },
-    { name: 'professionalRegistration', label: 'Registro profissional real', type: 'text' },
+    {
+      name: 'professionalRegistration',
+      label: 'Registro profissional real',
+      type: 'text',
+      defaultValue: 'CRECI F-59.138-F',
+    },
     { name: 'serviceLocation', label: 'Área de atuação real', type: 'text' },
     {
       name: 'heroSlides',
@@ -47,8 +52,8 @@ export const Brand: GlobalConfig = {
       type: 'upload',
       relationTo: 'media',
     },
-    { name: 'profileName', label: 'Nome profissional', type: 'text' },
-    { name: 'profileRole', label: 'Posicionamento', type: 'text' },
+    { name: 'profileName', label: 'Nome profissional', type: 'text', defaultValue: 'Marcio Rogério' },
+    { name: 'profileRole', label: 'Posicionamento', type: 'text', defaultValue: 'Corretor de Imóveis' },
     { name: 'biography', label: 'Trajetória profissional', type: 'textarea' },
     { name: 'philosophy', label: 'Filosofia de trabalho', type: 'textarea' },
   ],
