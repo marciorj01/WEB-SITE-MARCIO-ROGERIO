@@ -22,8 +22,8 @@ export function ContactForm({
   label = 'Solicitar atendimento',
 }: {
   intent?: Lead['intent']
-  property?: string
-  development?: string
+  property?: string | number
+  development?: string | number
   label?: string
 }) {
   const [state, action, pending] = useActionState(submitContact, initialFormState)

@@ -94,7 +94,7 @@ export function MediaImage({
   sizes = '(max-width: 768px) 100vw, 50vw',
   alt,
 }: {
-  media?: Media | string | null
+  media?: Media | string | number | null
   className?: string
   priority?: boolean
   sizes?: string

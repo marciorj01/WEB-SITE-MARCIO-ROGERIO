@@ -22,7 +22,7 @@ export function EditorialFeed({
   articles: Article[]
   categories: Category[]
 }) {
-  const [category, setCategory] = useState('all')
+  const [category, setCategory] = useState<string | number>('all')
   const [query, setQuery] = useState('')
   const [sort, setSort] = useState('recent')
   const [visible, setVisible] = useState(6)
@@ -35,7 +35,7 @@ export function EditorialFeed({
     return articles
       .filter(
         (article) =>
-          (category === 'all' || categoryOf(article)?.id === category) &&
+          (category === 'all' || String(categoryOf(article)?.id) === String(category)) &&
           normal(
             `${article.title} ${article.subtitle} ${categoryOf(article)?.name || ''}`,
           ).includes(normal(query)),
@@ -61,7 +61,7 @@ export function EditorialFeed({
         </button>
         {categories.map((item) => (
           <button
-            key={item.id}
+            key={String(item.id)}
             aria-pressed={category === item.id}
             onClick={() => {
               setCategory(item.id)
@@ -78,7 +78,7 @@ export function EditorialFeed({
       </div>
       {category !== 'all' && (
         <p className="mb-7 max-w-2xl border-l border-champagne pl-5 font-display text-2xl leading-relaxed text-muted">
-          {categories.find((item) => item.id === category)?.description}
+          {categories.find((item) => String(item.id) === String(category))?.description}
         </p>
       )}
       <div className="mb-9 flex flex-col justify-between gap-5 border-y border-line py-4 sm:flex-row sm:items-center">

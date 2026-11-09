@@ -5,7 +5,7 @@ import type { Media } from '@/payload-types'
 import { MediaImage } from './ui'
 import { Icon } from './icons'
 
-export type GalleryItem = { image: string | Media; caption?: string | null; id?: string | null }
+export type GalleryItem = { image: string | number | Media; caption?: string | null; id?: string | null }
 export function Gallery({ images, title }: { images: GalleryItem[]; title: string }) {
   const dialog = useRef<HTMLDialogElement>(null)
   const [active, setActive] = useState(0)

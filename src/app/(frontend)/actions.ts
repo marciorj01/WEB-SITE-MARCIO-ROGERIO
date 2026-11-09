@@ -89,9 +89,9 @@ export async function submitContact(_previous: FormState, formData: FormData): P
         ...(propertyType ? { propertyType: propertyType as Lead['propertyType'] } : {}),
         ...(location ? { location } : {}),
         ...(message ? { message } : {}),
-        ...(property ? { property } : {}),
-        ...(development ? { development } : {}),
-      },
+        ...(property ? { property: Number(property) || property } : {}),
+        ...(development ? { development: Number(development) || development } : {}),
+      } as any,
     })
     return {
       success: true,
