@@ -16,8 +16,14 @@ import {
   container,
 } from '@/components/ui'
 
+export const dynamicParams = true
+
 export async function generateStaticParams() {
-  return (await getProperties()).map((property) => ({ slug: property.slug }))
+  try {
+    return (await getProperties()).map((property) => ({ slug: property.slug }))
+  } catch {
+    return []
+  }
 }
 export async function generateMetadata({
   params,

@@ -18,8 +18,14 @@ import {
   container,
 } from '@/components/ui'
 
+export const dynamicParams = true
+
 export async function generateStaticParams() {
-  return (await getDevelopments()).map((development) => ({ slug: development.slug }))
+  try {
+    return (await getDevelopments()).map((development) => ({ slug: development.slug }))
+  } catch {
+    return []
+  }
 }
 export async function generateMetadata({
   params,

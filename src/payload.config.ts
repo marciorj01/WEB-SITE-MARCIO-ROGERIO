@@ -18,13 +18,26 @@ import { Leads } from './collections/Leads'
 import { NewsletterSubscribers } from './collections/NewsletterSubscribers'
 import { Brand } from './globals/Brand'
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
+
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 const rawDatabaseUri = process.env.DATABASE_URI || process.env.POSTGRES_URL
-const databaseUri = rawDatabaseUri
-  ? rawDatabaseUri.replace('sslmode=require', 'sslmode=no-verify')
-  : undefined
+
+function getCleanDatabaseUri(uri: string | undefined): string | undefined {
+  if (!uri) return undefined
+  try {
+    const url = new URL(uri)
+    url.searchParams.delete('sslmode')
+    url.searchParams.delete('ssl')
+    return url.toString()
+  } catch {
+    return uri.replace(/[?&]sslmode=[^&]+/, '').replace(/[?&]ssl=[^&]+/, '')
+  }
+}
+
+const databaseUri = getCleanDatabaseUri(rawDatabaseUri)
 
 const databaseAdapter = databaseUri
   ? postgresAdapter({

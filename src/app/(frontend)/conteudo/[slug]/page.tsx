@@ -11,8 +11,14 @@ import { ContactCTA } from '@/components/contact-cta'
 import { Breadcrumbs, MediaImage, SectionHeading, container } from '@/components/ui'
 import { Icon } from '@/components/icons'
 
+export const dynamicParams = true
+
 export async function generateStaticParams() {
-  return (await getArticles()).map((article) => ({ slug: article.slug }))
+  try {
+    return (await getArticles()).map((article) => ({ slug: article.slug }))
+  } catch {
+    return []
+  }
 }
 export async function generateMetadata({
   params,
