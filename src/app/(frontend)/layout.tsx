@@ -19,7 +19,7 @@ const socialImage = makeSiteSettings.openGraph?.image
 const googleAnalyticsId = sanitizeHtmlAttribute(makeSiteSettings.analytics?.googleAnalyticsId)
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.marciorjcorretor.com.br'),
   title,
   description,
   robots: makeSiteSettings.robots?.index === false ? { follow: false, index: false } : undefined,

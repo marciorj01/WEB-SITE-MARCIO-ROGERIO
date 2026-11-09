@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next'
 import { getArticles, getDevelopments, getProperties } from '@/lib/content'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const base = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.marciorjcorretor.com.br'
   const [articles, properties, developments] = await Promise.all([
     getArticles(),
     getProperties(),

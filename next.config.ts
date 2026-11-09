@@ -45,6 +45,9 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: [
     'localhost:3000',
     '127.0.0.1:3000',
+    'www.marciorjcorretor.com.br',
+    'marciorjcorretor.com.br',
+    'marciorjcorretor.netlify.app',
     ...(makePublicPreviewOrigin ? [makePublicPreviewOrigin] : []),
   ],
   // Prerender source maps add ~100 MB per static build worker
@@ -56,12 +59,16 @@ const nextConfig: NextConfig = {
       allowedOrigins: [
         'localhost:3000',
         '127.0.0.1:3000',
+        'www.marciorjcorretor.com.br',
+        'marciorjcorretor.com.br',
+        'marciorjcorretor.netlify.app',
         ...(makePublicPreviewOrigin ? [makePublicPreviewOrigin] : []),
       ],
     },
   },
   env: {
-    NEXT_PUBLIC_SITE_URL: process.env.FIGMA_PUBLIC_URL || 'http://localhost:3000',
+    NEXT_PUBLIC_SITE_URL:
+      process.env.NEXT_PUBLIC_SITE_URL || 'https://www.marciorjcorretor.com.br',
     // NOTE: Do not add FIGMA_OAUTH_CLIENT_SECRET, FIGMA_CONTENT_API_ACCESS_KEY,
     // or any other credential here. Values placed in `env` are inlined into
     // the JavaScript bundle by Next.js at build time and become readable by
