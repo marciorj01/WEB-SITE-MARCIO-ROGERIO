@@ -21,7 +21,10 @@ import { Brand } from './globals/Brand'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-const databaseUri = process.env.DATABASE_URI || process.env.POSTGRES_URL
+const rawDatabaseUri = process.env.DATABASE_URI || process.env.POSTGRES_URL
+const databaseUri = rawDatabaseUri
+  ? rawDatabaseUri.replace('sslmode=require', 'sslmode=no-verify')
+  : undefined
 
 const databaseAdapter = databaseUri
   ? postgresAdapter({

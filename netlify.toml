@@ -4,6 +4,7 @@
 
 [build.environment]
   NODE_VERSION = "22"
+  NODE_TLS_REJECT_UNAUTHORIZED = "0"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
