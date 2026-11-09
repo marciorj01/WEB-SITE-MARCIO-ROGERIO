@@ -105,3 +105,4 @@ Quando um cliente preenche os formulários do site (*"Vamos conversar"*, propost
 1. **Fotos com Boa Iluminação:** Fotos horizontais com luz natural valorizam muito o padrão dos imóveis.
 2. **Vídeos Curtos para o Banner:** Para vídeos de fundo no banner, clipes de **10 a 30 segundos** em resolução 1080p (Full HD) compactados em MP4 são ideais para carregar rápido até no 4G/5G do celular.
 3. **WhatsApp Sempre com DDD:** Em *Identidade e contato*, certifique-se de preencher apenas números (ex: `5521999999999`), para que os links de conversa direta funcionem em qualquer celular.
+
