@@ -1,7 +1,7 @@
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import type { Config } from '@/payload-types'
-import { unstable_cache } from 'next/cache'
+import { unstable_cache, unstable_noStore } from 'next/cache'
 
 type CollectionSlug = keyof Config['collections']
 
@@ -12,6 +12,36 @@ type CollectionSlug = keyof Config['collections']
 export async function getPayloadClient() {
   const payloadConfig = await config
   return getPayload({ config: payloadConfig })
+}
+
+const isProductionBuild = () => process.env.NEXT_PHASE === 'phase-production-build'
+
+/**
+ * Wrap a Payload read so an unreachable database cannot fail `next build`.
+ * Outside the build, errors propagate as usual. During the build, a failed
+ * read opts the current route out of static generation (it is rendered on
+ * demand at request time instead) and `generateStaticParams` gets the
+ * fallback, so no empty page is baked into the deploy. Once the database is
+ * reachable at build time, routes are prerendered statically again.
+ */
+export function withBuildFallback<Args extends unknown[], R>(
+  read: (...args: Args) => Promise<R>,
+  fallback: R,
+): (...args: Args) => Promise<R> {
+  return async (...args) => {
+    try {
+      return await read(...args)
+    } catch (error) {
+      if (!isProductionBuild()) throw error
+      console.warn(
+        `[payload] Database unavailable during build; rendering on demand instead. ${
+          error instanceof Error ? error.message : String(error)
+        }`,
+      )
+      unstable_noStore()
+      return fallback
+    }
+  }
 }
 
 /**
@@ -59,9 +89,12 @@ export async function findBySlug<T extends CollectionSlug>(
     return (result.docs[0] as Config['collections'][T]) ?? null
   }
   if (draft) return query()
-  return unstable_cache(query, ['detail', collection, slug, String(depth)], {
-    tags: [collection, `${collection}:${slug}`, 'media'],
-  })()
+  return withBuildFallback(
+    unstable_cache(query, ['detail', collection, slug, String(depth)], {
+      tags: [collection, `${collection}:${slug}`, 'media'],
+    }),
+    null,
+  )()
 }
 
 /**

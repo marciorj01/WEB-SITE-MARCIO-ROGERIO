@@ -23,11 +23,34 @@ const dirname = path.dirname(filename)
 
 const databaseUri = process.env.DATABASE_URI || process.env.POSTGRES_URL
 
+const SSL_URL_PARAMS = ['sslmode', 'ssl', 'sslrootcert', 'sslcert', 'sslkey', 'uselibpqcompat']
+
+/**
+ * Managed Postgres providers often present certificates signed by a private CA,
+ * which Node.js rejects ("self-signed certificate in certificate chain").
+ * `pg` lets SSL params in the connection string override the `ssl` option, so
+ * strip them from the URL and configure TLS explicitly: encrypted, without CA
+ * verification. Local databases and `sslmode=disable` keep plain connections.
+ */
+function buildPoolConfig(uri: string) {
+  try {
+    const url = new URL(uri)
+    const sslmode = url.searchParams.get('sslmode')
+    const isLocal = ['localhost', '127.0.0.1', '::1'].includes(url.hostname)
+    for (const param of SSL_URL_PARAMS) url.searchParams.delete(param)
+    const useSsl = sslmode !== 'disable' && !(isLocal && !sslmode)
+    return {
+      connectionString: url.toString(),
+      ssl: useSsl ? { rejectUnauthorized: false } : false,
+    }
+  } catch {
+    return { connectionString: uri, ssl: { rejectUnauthorized: false } }
+  }
+}
+
 const databaseAdapter = databaseUri
   ? postgresAdapter({
-      pool: {
-        connectionString: databaseUri,
-      },
+      pool: buildPoolConfig(databaseUri),
     })
   : sqliteAdapter({
       client: {
