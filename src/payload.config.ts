@@ -27,6 +27,9 @@ const databaseAdapter = databaseUri
   ? postgresAdapter({
       pool: {
         connectionString: databaseUri,
+        ssl: {
+          rejectUnauthorized: false,
+        },
       },
     })
   : sqliteAdapter({
