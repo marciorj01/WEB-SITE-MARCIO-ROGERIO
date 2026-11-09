@@ -21,10 +21,12 @@ import { Brand } from './globals/Brand'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-const databaseAdapter = process.env.DATABASE_URI
+const databaseUri = process.env.DATABASE_URI || process.env.POSTGRES_URL
+
+const databaseAdapter = databaseUri
   ? postgresAdapter({
       pool: {
-        connectionString: process.env.DATABASE_URI,
+        connectionString: databaseUri,
       },
     })
   : sqliteAdapter({
