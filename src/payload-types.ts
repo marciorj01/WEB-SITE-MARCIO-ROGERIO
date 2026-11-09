@@ -993,9 +993,20 @@ export interface Brand {
   email?: string | null;
   professionalRegistration?: string | null;
   serviceLocation?: string | null;
+  /**
+   * Faça upload de um arquivo de vídeo (MP4 ou WebM) para rodar como fundo dinâmico do banner.
+   */
+  heroVideo?: (number | null) | Media;
+  /**
+   * Exemplo: link direto para um vídeo MP4 na nuvem ou pasta local.
+   */
+  heroVideoUrl?: string | null;
   heroSlides?:
     | {
-        image: number | Media;
+        mediaType?: ('image' | 'video') | null;
+        image?: (number | null) | Media;
+        video?: (number | null) | Media;
+        videoUrl?: string | null;
         caption?: string | null;
         id?: string | null;
       }[]
@@ -1031,10 +1042,15 @@ export interface BrandSelect<T extends boolean = true> {
   email?: T;
   professionalRegistration?: T;
   serviceLocation?: T;
+  heroVideo?: T;
+  heroVideoUrl?: T;
   heroSlides?:
     | T
     | {
+        mediaType?: T;
         image?: T;
+        video?: T;
+        videoUrl?: T;
         caption?: T;
         id?: T;
       };

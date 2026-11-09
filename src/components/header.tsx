@@ -7,6 +7,7 @@ import { BrandMark } from './brand-mark'
 import { Icon } from './icons'
 
 export const navigation = [
+  { href: '/', label: 'Home' },
   { href: '/comprar', label: 'Comprar' },
   { href: '/investir', label: 'Investir' },
   { href: '/empreendimentos', label: 'Empreendimentos' },
@@ -41,16 +42,19 @@ export function Header({ name, tagline }: { name?: string | null; tagline?: stri
             aria-label="Navegação principal"
             className="hidden h-full items-center gap-6 xl:gap-8 lg:flex"
           >
-            {navigation.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                aria-current={path.startsWith(item.href) ? 'page' : undefined}
-                className={`relative flex h-full items-center text-[11px] font-medium transition-colors after:absolute after:right-0 after:bottom-[24px] after:left-0 after:h-px after:origin-left after:bg-champagne after:transition-transform hover:text-gold-dark ${path.startsWith(item.href) ? 'text-gold-dark after:scale-x-100' : 'text-navy after:scale-x-0 hover:after:scale-x-100'}`}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navigation.map((item) => {
+              const isActive = item.href === '/' ? path === '/' : path.startsWith(item.href)
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`relative flex h-full items-center text-[11px] font-medium transition-colors after:absolute after:right-0 after:bottom-[24px] after:left-0 after:h-px after:origin-left after:bg-champagne after:transition-transform hover:text-gold-dark ${isActive ? 'text-gold-dark after:scale-x-100' : 'text-navy after:scale-x-0 hover:after:scale-x-100'}`}
+                >
+                  {item.label}
+                </Link>
+              )
+            })}
           </nav>
           <Link
             href="/contato"

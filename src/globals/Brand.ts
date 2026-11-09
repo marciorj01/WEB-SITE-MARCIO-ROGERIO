@@ -29,13 +29,56 @@ export const Brand: GlobalConfig = {
     },
     { name: 'serviceLocation', label: 'Área de atuação real', type: 'text' },
     {
+      name: 'heroVideo',
+      label: 'Vídeo principal do Banner (opcional)',
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        description: 'Faça upload de um arquivo de vídeo (MP4 ou WebM) para rodar como fundo dinâmico do banner.',
+      },
+    },
+    {
+      name: 'heroVideoUrl',
+      label: 'Ou URL externa do vídeo (MP4)',
+      type: 'text',
+      admin: {
+        description: 'Exemplo: link direto para um vídeo MP4 na nuvem ou pasta local.',
+      },
+    },
+    {
       name: 'heroSlides',
-      label: 'Fotografias de abertura',
+      label: 'Slides de abertura (Fotos ou Vídeos de Empreendimentos)',
       type: 'array',
-      maxRows: 5,
+      maxRows: 6,
       fields: [
-        { name: 'image', label: 'Fotografia', type: 'upload', relationTo: 'media', required: true },
-        { name: 'caption', label: 'Legenda', type: 'text' },
+        {
+          name: 'mediaType',
+          label: 'Tipo de mídia',
+          type: 'select',
+          defaultValue: 'image',
+          options: [
+            { label: 'Fotografia', value: 'image' },
+            { label: 'Vídeo (MP4)', value: 'video' },
+          ],
+        },
+        {
+          name: 'image',
+          label: 'Fotografia',
+          type: 'upload',
+          relationTo: 'media',
+        },
+        {
+          name: 'video',
+          label: 'Arquivo de Vídeo (MP4)',
+          type: 'upload',
+          relationTo: 'media',
+        },
+        {
+          name: 'videoUrl',
+          label: 'Ou link direto do vídeo (MP4)',
+          type: 'text',
+        },
+        { name: 'caption', label: 'Legenda / Nome do Empreendimento', type: 'text' },
       ],
     },
     {

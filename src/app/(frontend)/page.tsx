@@ -24,7 +24,11 @@ export default async function HomePage() {
   const editorial = articles.filter((article) => article.format === 'article').slice(0, 4)
   return (
     <main id="main-content">
-      <HomeHero slides={brand.heroSlides} />
+      <HomeHero
+        slides={brand.heroSlides}
+        video={(brand as any).heroVideo}
+        videoUrl={(brand as any).heroVideoUrl}
+      />
       <div className="border-b border-line bg-ivory">
         <div
           className={`${container} flex flex-wrap items-center justify-between gap-5 py-6 text-[9px] uppercase tracking-[.18em] text-muted`}
