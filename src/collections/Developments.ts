@@ -24,6 +24,22 @@ export const Developments: CollectionConfig = {
         { name: 'caption', label: 'Legenda', type: 'text' },
       ],
     },
+    {
+      name: 'tour360Url',
+      label: 'Link do Tour Virtual 360° / Decorado Virtual (Matterport, Kuula, etc.)',
+      type: 'text',
+      admin: {
+        description: 'Link do tour 360 interativo do decorado ou empreendimento.',
+      },
+    },
+    {
+      name: 'videoUrl',
+      label: 'Link do Vídeo do Empreendimento (YouTube, Vimeo ou MP4)',
+      type: 'text',
+      admin: {
+        description: 'Link do vídeo de apresentação ou imagens de drone.',
+      },
+    },
     { name: 'location', label: 'Localização', type: 'text' },
     { name: 'architecture', label: 'Arquitetura', type: 'textarea' },
     {

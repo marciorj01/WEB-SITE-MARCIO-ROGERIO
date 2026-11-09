@@ -6,6 +6,7 @@ import { stageLabels } from '@/components/cards'
 import { Gallery } from '@/components/gallery'
 import { Typologies } from '@/components/typologies'
 import { ContactForm } from '@/components/forms'
+import { PropertyMediaActions } from '@/components/media-viewers'
 import { Icon } from '@/components/icons'
 import {
   Breadcrumbs,
@@ -57,9 +58,16 @@ export default async function DevelopmentPage({ params }: { params: Promise<{ sl
           </h1>
           <div className="mt-6 flex flex-col justify-between gap-7 md:flex-row md:items-center">
             <p className="font-display text-3xl italic text-champagne-light">{project.subtitle}</p>
-            <ButtonLink href="#informacoes" variant="gold">
-              Solicitar informações
-            </ButtonLink>
+            <div className="flex flex-wrap items-center gap-4">
+              <PropertyMediaActions
+                tour360Url={(project as any).tour360Url}
+                videoUrl={(project as any).videoUrl}
+                title={project.title}
+              />
+              <ButtonLink href="#informacoes" variant="gold">
+                Solicitar informações
+              </ButtonLink>
+            </div>
           </div>
         </div>
       </section>

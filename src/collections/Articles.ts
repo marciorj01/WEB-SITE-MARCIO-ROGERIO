@@ -19,6 +19,14 @@ export const Articles: CollectionConfig = {
     { name: 'subtitle', label: 'Subtítulo', type: 'textarea', required: true },
     { name: 'cover', label: 'Capa', type: 'upload', relationTo: 'media', required: true },
     {
+      name: 'videoUrl',
+      label: 'Vídeo da Matéria (YouTube / Vimeo / MP4 opcional)',
+      type: 'text',
+      admin: {
+        description: 'Insira o link de um vídeo complementar à matéria, se houver.',
+      },
+    },
+    {
       name: 'category',
       label: 'Categoria',
       type: 'relationship',

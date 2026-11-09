@@ -5,6 +5,7 @@ import { getProperties } from '@/lib/content'
 import { PropertyCard, segmentLabels } from '@/components/cards'
 import { Gallery } from '@/components/gallery'
 import { ContactForm } from '@/components/forms'
+import { PropertyMediaActions } from '@/components/media-viewers'
 import { Icon } from '@/components/icons'
 import {
   Breadcrumbs,
@@ -51,9 +52,16 @@ export default async function PropertyPage({ params }: { params: Promise<{ slug:
             </h1>
             <p className="mt-3 font-display text-2xl italic text-gold-dark">{property.subtitle}</p>
           </div>
-          <ButtonLink href="#interesse" variant="outline">
-            {property.referenceOnly ? 'Quero encontrar um imóvel assim' : 'Solicitar detalhes'}
-          </ButtonLink>
+          <div className="flex flex-wrap items-center gap-4">
+            <PropertyMediaActions
+              tour360Url={(property as any).tour360Url}
+              videoUrl={(property as any).videoUrl}
+              title={property.title}
+            />
+            <ButtonLink href="#interesse" variant="outline">
+              {property.referenceOnly ? 'Quero encontrar um imóvel assim' : 'Solicitar detalhes'}
+            </ButtonLink>
+          </div>
         </div>
         <p className="mt-7 flex items-center gap-2 text-[10px] text-muted">
           <Icon name="pin" className="size-4 text-gold-dark" />

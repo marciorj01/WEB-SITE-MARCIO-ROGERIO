@@ -357,6 +357,10 @@ export interface Article {
   slug: string;
   subtitle: string;
   cover: number | Media;
+  /**
+   * Insira o link de um vídeo complementar à matéria, se houver.
+   */
+  videoUrl?: string | null;
   category: number | Category;
   author?: (number | null) | Author;
   publishedAt: string;
@@ -400,6 +404,14 @@ export interface Property {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Insira o link do tour virtual interativo 360° (ex: https://my.matterport.com/show/?m=... ou Kuula).
+   */
+  tour360Url?: string | null;
+  /**
+   * Insira o link de visualização do vídeo do imóvel.
+   */
+  videoUrl?: string | null;
   segment: 'first' | 'medium' | 'high';
   type?: ('Casa' | 'Apartamento' | 'Studio' | 'Cobertura') | null;
   location?: string | null;
@@ -448,6 +460,14 @@ export interface Development {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Link do tour 360 interativo do decorado ou empreendimento.
+   */
+  tour360Url?: string | null;
+  /**
+   * Link do vídeo de apresentação ou imagens de drone.
+   */
+  videoUrl?: string | null;
   location?: string | null;
   architecture?: string | null;
   launchStage?: ('reference' | 'prelaunch' | 'launch' | 'construction' | 'ready') | null;
@@ -784,6 +804,7 @@ export interface ArticlesSelect<T extends boolean = true> {
   slug?: T;
   subtitle?: T;
   cover?: T;
+  videoUrl?: T;
   category?: T;
   author?: T;
   publishedAt?: T;
@@ -820,6 +841,8 @@ export interface PropertiesSelect<T extends boolean = true> {
         caption?: T;
         id?: T;
       };
+  tour360Url?: T;
+  videoUrl?: T;
   segment?: T;
   type?: T;
   location?: T;
@@ -861,6 +884,8 @@ export interface DevelopmentsSelect<T extends boolean = true> {
         caption?: T;
         id?: T;
       };
+  tour360Url?: T;
+  videoUrl?: T;
   location?: T;
   architecture?: T;
   launchStage?: T;

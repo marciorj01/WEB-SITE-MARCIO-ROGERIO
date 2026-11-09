@@ -65,6 +65,8 @@ Para adicionar imóveis à sua curadoria ou novos lançamentos na planta:
    * **Quartos, Suítes e Vagas:** Quantidades numéricas;
    * **Fotografia Principal:** Foto de capa do card;
    * **Galeria de Fotos:** Todas as fotos internas do imóvel;
+   * **Tour Virtual 360°:** Cole o link do tour imersivo (Matterport, Kuula, Banib, etc.). Um botão especial *"Tour Virtual 360°"* com visualizador embutido aparecerá na página do imóvel!
+   * **Vídeo do Imóvel:** Cole o link do vídeo (YouTube, Vimeo ou MP4). Um botão *"Vídeo do Imóvel"* aparecerá na página;
    * **Destaques / Tags:** Diferenciais (ex: *"Piscina privativa"*, *"Varanda gourmet"*);
 4. **Publicação:**
    * No canto superior direito, certifique-se de que o status esteja marcado como **Publicado**;

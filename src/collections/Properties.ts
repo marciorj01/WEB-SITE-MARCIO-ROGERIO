@@ -35,6 +35,22 @@ export const Properties: CollectionConfig = {
       ],
     },
     {
+      name: 'tour360Url',
+      label: 'Link do Tour Virtual 360° (Matterport, Kuula, Banib, etc.)',
+      type: 'text',
+      admin: {
+        description: 'Insira o link do tour virtual interativo 360° (ex: https://my.matterport.com/show/?m=... ou Kuula).',
+      },
+    },
+    {
+      name: 'videoUrl',
+      label: 'Link do Vídeo do Imóvel (YouTube, Vimeo ou MP4)',
+      type: 'text',
+      admin: {
+        description: 'Insira o link de visualização do vídeo do imóvel.',
+      },
+    },
+    {
       name: 'segment',
       label: 'Segmento',
       type: 'select',
