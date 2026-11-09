@@ -1,6 +1,8 @@
 import path from 'path'
-import { buildFigmaConfig } from '@payloadcms/figma'
-import { mcpPlugin } from '@payloadcms/plugin-mcp'
+import { buildConfig } from 'payload'
+import { sqliteAdapter } from '@payloadcms/db-sqlite'
+import { postgresAdapter } from '@payloadcms/db-postgres'
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { pt as adminLanguage } from '@payloadcms/translations/languages/pt'
 import { fileURLToPath } from 'url'
 import { Admins } from './collections/Admins'
@@ -19,17 +21,24 @@ import { Brand } from './globals/Brand'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-export default buildFigmaConfig({
+const databaseAdapter = process.env.DATABASE_URI
+  ? postgresAdapter({
+      pool: {
+        connectionString: process.env.DATABASE_URI,
+      },
+    })
+  : sqliteAdapter({
+      client: {
+        url: `file:${path.resolve(dirname, 'payload.db')}`,
+      },
+    })
+
+export default buildConfig({
+  secret: process.env.PAYLOAD_SECRET || 'marcio-rogerio-secret-dev-key-2026-payload',
+  db: databaseAdapter,
+  editor: lexicalEditor(),
   admin: {
     user: Admins.slug,
-    constrainWidth: true,
-    dashboard: {
-      widgets: [],
-      defaultLayout: [
-        { widgetSlug: 'activity', width: 'full' },
-        { widgetSlug: 'collections', width: 'full' },
-      ],
-    },
     importMap: {
       baseDir: path.resolve(dirname),
     },
@@ -55,11 +64,4 @@ export default buildFigmaConfig({
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-  localization: {
-    locales: [{ code: 'en', label: 'English' }],
-    fallback: true,
-    defaultLocale: 'en',
-  },
-  plugins: [mcpPlugin({})],
-  figma: {},
 })

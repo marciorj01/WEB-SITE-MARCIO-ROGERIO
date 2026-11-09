@@ -62,16 +62,16 @@ export type SupportedTimezones =
   | 'Pacific/Fiji';
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "LexicalNodes_88E2DB39".
+ * via the `definition` "LexicalNodes_D0A2817A".
  */
-export type LexicalNodes_88E2DB39 =
+export type LexicalNodes_D0A2817A =
   | SerializedTextNode
   | SerializedTabNode
   | SerializedLineBreakNode
-  | SerializedParagraphNode<LexicalNodes_88E2DB39>
+  | SerializedParagraphNode<LexicalNodes_D0A2817A>
   | SerializedHorizontalRuleNode
   | SerializedUploadNode<'media'>
-  | SerializedQuoteNode<LexicalNodes_88E2DB39>
+  | SerializedQuoteNode<LexicalNodes_D0A2817A>
   | SerializedRelationshipNode<
       | 'admins'
       | 'folders'
@@ -88,11 +88,11 @@ export type LexicalNodes_88E2DB39 =
       | 'payload-preferences'
       | 'payload-migrations'
     >
-  | SerializedAutoLinkNode<LexicalNodes_88E2DB39, LexicalLinkFields>
-  | SerializedLinkNode<LexicalNodes_88E2DB39, LexicalLinkFields>
-  | SerializedListNode<LexicalNodes_88E2DB39>
-  | SerializedListItemNode<LexicalNodes_88E2DB39>
-  | SerializedHeadingNode<LexicalNodes_88E2DB39>;
+  | SerializedAutoLinkNode<LexicalNodes_D0A2817A, LexicalLinkFields>
+  | SerializedLinkNode<LexicalNodes_D0A2817A, LexicalLinkFields>
+  | SerializedListNode<LexicalNodes_D0A2817A>
+  | SerializedListItemNode<LexicalNodes_D0A2817A>
+  | SerializedHeadingNode<LexicalNodes_D0A2817A>;
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "LexicalNodes_3DE324E4".
@@ -149,16 +149,16 @@ export interface Config {
     'payload-llm-instructions': PayloadLlmInstructionsSelect<false> | PayloadLlmInstructionsSelect<true>;
   };
   db: {
-    defaultIDType: string;
+    defaultIDType: number;
   };
-  fallbackLocale: ('false' | 'none' | 'null') | false | null | 'en' | 'en'[];
+  fallbackLocale: null;
   globals: {
     brand: Brand;
   };
   globalsSelect: {
     brand: BrandSelect<false> | BrandSelect<true>;
   };
-  locale: 'en';
+  locale: null;
   widgets: {
     welcome: WelcomeWidget;
     collections: CollectionsWidget;
@@ -195,22 +195,33 @@ export interface AdminAuthOperations {
  * via the `definition` "admins".
  */
 export interface Admin {
-  id: string;
-  figmaHandle?: string | null;
-  figmaImageUrl?: string | null;
-  userGroups?: string[] | null;
-  makePermission?: ('view' | 'edit') | null;
-  email?: string | null;
+  id: number;
   createdBy?: {
     relationTo: 'admins';
-    value: string | Admin;
+    value: number | Admin;
   } | null;
   updatedBy?: {
     relationTo: 'admins';
-    value: string | Admin;
+    value: number | Admin;
   } | null;
   updatedAt: string;
   createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  resetPasswordRequestedAt?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
   collection: 'admins';
 }
 /**
@@ -218,19 +229,17 @@ export interface Admin {
  * via the `definition` "media".
  */
 export interface Media {
-  id: string;
+  id: number;
   alt: string;
-  _h_folders?: (string | null) | Folder;
-  _h_tags?: (string | Tag)[] | null;
-  prefix?: string | null;
-  _objectKey?: string | null;
+  _h_folders?: (number | null) | Folder;
+  _h_tags?: (number | Tag)[] | null;
   createdBy?: {
     relationTo: 'admins';
-    value: string | Admin;
+    value: number | Admin;
   } | null;
   updatedBy?: {
     relationTo: 'admins';
-    value: string | Admin;
+    value: number | Admin;
   } | null;
   updatedAt: string;
   createdAt: string;
@@ -259,16 +268,16 @@ export interface Media {
  * via the `definition` "folders".
  */
 export interface Folder {
-  id: string;
-  _h_folders?: (string | null) | Folder;
+  id: number;
+  _h_folders?: (number | null) | Folder;
   name: string;
   createdBy?: {
     relationTo: 'admins';
-    value: string | Admin;
+    value: number | Admin;
   } | null;
   updatedBy?: {
     relationTo: 'admins';
-    value: string | Admin;
+    value: number | Admin;
   } | null;
   updatedAt: string;
   createdAt: string;
@@ -280,16 +289,16 @@ export interface Folder {
  * via the `definition` "tags".
  */
 export interface Tag {
-  id: string;
-  _h_tags?: (string | null) | Tag;
+  id: number;
+  _h_tags?: (number | null) | Tag;
   name: string;
   createdBy?: {
     relationTo: 'admins';
-    value: string | Admin;
+    value: number | Admin;
   } | null;
   updatedBy?: {
     relationTo: 'admins';
-    value: string | Admin;
+    value: number | Admin;
   } | null;
   updatedAt: string;
   createdAt: string;
@@ -301,7 +310,7 @@ export interface Tag {
  * via the `definition` "categories".
  */
 export interface Category {
-  id: string;
+  id: number;
   name: string;
   slug: string;
   description?: string | null;
@@ -309,11 +318,11 @@ export interface Category {
   order?: number | null;
   createdBy?: {
     relationTo: 'admins';
-    value: string | Admin;
+    value: number | Admin;
   } | null;
   updatedBy?: {
     relationTo: 'admins';
-    value: string | Admin;
+    value: number | Admin;
   } | null;
   updatedAt: string;
   createdAt: string;
@@ -323,17 +332,17 @@ export interface Category {
  * via the `definition` "authors".
  */
 export interface Author {
-  id: string;
+  id: number;
   name: string;
   bio?: string | null;
-  portrait?: (string | null) | Media;
+  portrait?: (number | null) | Media;
   createdBy?: {
     relationTo: 'admins';
-    value: string | Admin;
+    value: number | Admin;
   } | null;
   updatedBy?: {
     relationTo: 'admins';
-    value: string | Admin;
+    value: number | Admin;
   } | null;
   updatedAt: string;
   createdAt: string;
@@ -343,31 +352,31 @@ export interface Author {
  * via the `definition` "articles".
  */
 export interface Article {
-  id: string;
+  id: number;
   title: string;
   slug: string;
   subtitle: string;
-  cover: string | Media;
-  category: string | Category;
-  author?: (string | null) | Author;
+  cover: number | Media;
+  category: number | Category;
+  author?: (number | null) | Author;
   publishedAt: string;
   readingTime?: number | null;
   featured?: boolean | null;
   order?: number | null;
   format?: ('article' | 'guide' | 'report' | 'sponsored') | null;
   sponsor?: string | null;
-  content: LexicalRichText<LexicalNodes_88E2DB39>;
+  content: LexicalRichText<LexicalNodes_D0A2817A>;
   pullquote?: string | null;
-  inlineImage?: (string | null) | Media;
-  conclusion?: LexicalRichText<LexicalNodes_88E2DB39> | null;
+  inlineImage?: (number | null) | Media;
+  conclusion?: LexicalRichText<LexicalNodes_D0A2817A> | null;
   contactPrompt?: string | null;
   createdBy?: {
     relationTo: 'admins';
-    value: string | Admin;
+    value: number | Admin;
   } | null;
   updatedBy?: {
     relationTo: 'admins';
-    value: string | Admin;
+    value: number | Admin;
   } | null;
   updatedAt: string;
   createdAt: string;
@@ -378,15 +387,15 @@ export interface Article {
  * via the `definition` "properties".
  */
 export interface Property {
-  id: string;
+  id: number;
   title: string;
   slug: string;
   subtitle?: string | null;
   description: string;
-  image: string | Media;
+  image: number | Media;
   gallery?:
     | {
-        image: string | Media;
+        image: number | Media;
         caption?: string | null;
         id?: string | null;
       }[]
@@ -411,11 +420,11 @@ export interface Property {
   order?: number | null;
   createdBy?: {
     relationTo: 'admins';
-    value: string | Admin;
+    value: number | Admin;
   } | null;
   updatedBy?: {
     relationTo: 'admins';
-    value: string | Admin;
+    value: number | Admin;
   } | null;
   updatedAt: string;
   createdAt: string;
@@ -426,15 +435,15 @@ export interface Property {
  * via the `definition` "developments".
  */
 export interface Development {
-  id: string;
+  id: number;
   title: string;
   slug: string;
   subtitle?: string | null;
   description: string;
-  image: string | Media;
+  image: number | Media;
   gallery?:
     | {
-        image: string | Media;
+        image: number | Media;
         caption?: string | null;
         id?: string | null;
       }[]
@@ -447,7 +456,7 @@ export interface Development {
         name: string;
         area?: string | null;
         bedrooms?: string | null;
-        plan?: (string | null) | Media;
+        plan?: (number | null) | Media;
         id?: string | null;
       }[]
     | null;
@@ -461,11 +470,11 @@ export interface Development {
   order?: number | null;
   createdBy?: {
     relationTo: 'admins';
-    value: string | Admin;
+    value: number | Admin;
   } | null;
   updatedBy?: {
     relationTo: 'admins';
-    value: string | Admin;
+    value: number | Admin;
   } | null;
   updatedAt: string;
   createdAt: string;
@@ -476,7 +485,7 @@ export interface Development {
  * via the `definition` "leads".
  */
 export interface Lead {
-  id: string;
+  id: number;
   name: string;
   email: string;
   whatsapp: string;
@@ -484,17 +493,17 @@ export interface Lead {
   propertyType?: ('Casa' | 'Apartamento' | 'Studio' | 'Cobertura' | 'Terreno' | 'Outro') | null;
   location?: string | null;
   message?: string | null;
-  property?: (string | null) | Property;
-  development?: (string | null) | Development;
+  property?: (number | null) | Property;
+  development?: (number | null) | Development;
   consent: boolean;
   status?: ('new' | 'contacted' | 'completed') | null;
   createdBy?: {
     relationTo: 'admins';
-    value: string | Admin;
+    value: number | Admin;
   } | null;
   updatedBy?: {
     relationTo: 'admins';
-    value: string | Admin;
+    value: number | Admin;
   } | null;
   updatedAt: string;
   createdAt: string;
@@ -504,17 +513,17 @@ export interface Lead {
  * via the `definition` "newsletter-subscribers".
  */
 export interface NewsletterSubscriber {
-  id: string;
+  id: number;
   name: string;
   email: string;
   consent: boolean;
   createdBy?: {
     relationTo: 'admins';
-    value: string | Admin;
+    value: number | Admin;
   } | null;
   updatedBy?: {
     relationTo: 'admins';
-    value: string | Admin;
+    value: number | Admin;
   } | null;
   updatedAt: string;
   createdAt: string;
@@ -524,7 +533,7 @@ export interface NewsletterSubscriber {
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
-  id: string;
+  id: number;
   key: string;
   data:
     | {
@@ -541,56 +550,56 @@ export interface PayloadKv {
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: string;
+  id: number;
   document?:
     | ({
         relationTo: 'admins';
-        value: string | Admin;
+        value: number | Admin;
       } | null)
     | ({
         relationTo: 'media';
-        value: string | Media;
+        value: number | Media;
       } | null)
     | ({
         relationTo: 'folders';
-        value: string | Folder;
+        value: number | Folder;
       } | null)
     | ({
         relationTo: 'tags';
-        value: string | Tag;
+        value: number | Tag;
       } | null)
     | ({
         relationTo: 'categories';
-        value: string | Category;
+        value: number | Category;
       } | null)
     | ({
         relationTo: 'authors';
-        value: string | Author;
+        value: number | Author;
       } | null)
     | ({
         relationTo: 'articles';
-        value: string | Article;
+        value: number | Article;
       } | null)
     | ({
         relationTo: 'properties';
-        value: string | Property;
+        value: number | Property;
       } | null)
     | ({
         relationTo: 'developments';
-        value: string | Development;
+        value: number | Development;
       } | null)
     | ({
         relationTo: 'leads';
-        value: string | Lead;
+        value: number | Lead;
       } | null)
     | ({
         relationTo: 'newsletter-subscribers';
-        value: string | NewsletterSubscriber;
+        value: number | NewsletterSubscriber;
       } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'admins';
-    value: string | Admin;
+    value: number | Admin;
   };
   updatedAt: string;
   createdAt: string;
@@ -600,10 +609,10 @@ export interface PayloadLockedDocument {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: string;
+  id: number;
   user: {
     relationTo: 'admins';
-    value: string | Admin;
+    value: number | Admin;
   };
   key?: string | null;
   value?:
@@ -623,7 +632,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: string;
+  id: number;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
@@ -642,11 +651,11 @@ export interface PayloadLlmInstruction {
   systemInstructions?: LexicalRichText<LexicalNodes_3DE324E4> | null;
   createdBy?: {
     relationTo: 'admins';
-    value: string | Admin;
+    value: number | Admin;
   } | null;
   updatedBy?: {
     relationTo: 'admins';
-    value: string | Admin;
+    value: number | Admin;
   } | null;
   updatedAt: string;
   createdAt: string;
@@ -656,15 +665,25 @@ export interface PayloadLlmInstruction {
  * via the `definition` "admins_select".
  */
 export interface AdminsSelect<T extends boolean = true> {
-  figmaHandle?: T;
-  figmaImageUrl?: T;
-  userGroups?: T;
-  makePermission?: T;
-  email?: T;
   createdBy?: T;
   updatedBy?: T;
   updatedAt?: T;
   createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  resetPasswordRequestedAt?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -674,8 +693,6 @@ export interface MediaSelect<T extends boolean = true> {
   alt?: T;
   _h_folders?: T;
   _h_tags?: T;
-  prefix?: T;
-  _objectKey?: T;
   createdBy?: T;
   updatedBy?: T;
   updatedAt?: T;
@@ -965,7 +982,7 @@ export interface PayloadLlmInstructionsSelect<T extends boolean = true> {
  * via the `definition` "brand".
  */
 export interface Brand {
-  id: string;
+  id: number;
   name?: string | null;
   tagline?: string | null;
   demoNotice?: string | null;
@@ -978,26 +995,26 @@ export interface Brand {
   serviceLocation?: string | null;
   heroSlides?:
     | {
-        image: string | Media;
+        image: number | Media;
         caption?: string | null;
         id?: string | null;
       }[]
     | null;
-  consultingImage?: (string | null) | Media;
-  investImage?: (string | null) | Media;
-  sellImage?: (string | null) | Media;
-  aboutImage?: (string | null) | Media;
+  consultingImage?: (number | null) | Media;
+  investImage?: (number | null) | Media;
+  sellImage?: (number | null) | Media;
+  aboutImage?: (number | null) | Media;
   profileName?: string | null;
   profileRole?: string | null;
   biography?: string | null;
   philosophy?: string | null;
   createdBy?: {
     relationTo: 'admins';
-    value: string | Admin;
+    value: number | Admin;
   } | null;
   updatedBy?: {
     relationTo: 'admins';
-    value: string | Admin;
+    value: number | Admin;
   } | null;
   updatedAt?: string | null;
   createdAt?: string | null;
