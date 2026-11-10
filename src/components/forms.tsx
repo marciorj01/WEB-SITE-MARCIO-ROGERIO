@@ -268,7 +268,15 @@ export function ContactForm({
   )
 }
 
-export function Newsletter({ compact = false }: { compact?: boolean }) {
+export function Newsletter({
+  compact = false,
+  title,
+  text,
+}: {
+  compact?: boolean
+  title?: string
+  text?: string
+}) {
   const [state, action, pending] = useActionState(subscribeNewsletter, initialFormState)
   const id = useId()
   return (
@@ -280,13 +288,17 @@ export function Newsletter({ compact = false }: { compact?: boolean }) {
         <div>
           <Eyebrow className="mb-5">Carta imobiliária de Marcio Rogério</Eyebrow>
           <h2 className="font-display text-[37px] leading-[1.13] md:text-[43px]">
-            Um novo olhar.
-            <br />
-            <em>Direto na sua caixa de entrada.</em>
+            {title || (
+              <>
+                Um novo olhar.
+                <br />
+                <em>Direto na sua caixa de entrada.</em>
+              </>
+            )}
           </h2>
           <p className="mt-5 max-w-sm text-[11px] leading-6 text-muted">
-            Inteligência imobiliária para decisões mais estratégicas. Mercado, arquitetura e
-            patrimônio, com a curadoria de Marcio Rogério.
+            {text ||
+              'Inteligência imobiliária para decisões mais estratégicas. Mercado, arquitetura e patrimônio, com a curadoria de Marcio Rogério.'}
           </p>
         </div>
         <div className="self-center">

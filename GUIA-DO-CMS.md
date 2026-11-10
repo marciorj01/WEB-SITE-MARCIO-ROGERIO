@@ -14,9 +14,9 @@ Este guia prático foi criado para orientar você no uso diário do painel admin
 
 ## 🧩 2. Editor visual das páginas
 
-Em **Construtor visual > Páginas visuais**, já existem rascunhos iniciais das páginas principais. Abra um rascunho para editar os textos, imagens e seções; arraste os blocos para mudar a ordem. A prévia ao vivo mostra as alterações antes da publicação; use os botões de celular, tablet e computador para conferir os tamanhos.
+Em **Construtor visual > Páginas visuais**, há rascunhos iniciais para Início, Comprar, Investir, Empreendimentos, Vender, Conteúdo, Sobre, Contato e Privacidade. Abra um rascunho para editar textos, imagens e seções; arraste os blocos para mudar a ordem. A prévia ao vivo mostra as alterações antes da publicação; use os botões de celular, tablet e computador para conferir os tamanhos.
 
-Seções disponíveis: abertura/banner, texto, imagem com texto, galeria, vitrine de imóveis/empreendimentos/artigos, chamada para contato, newsletter e formulário de contato. Ao publicar uma página, ela passa a ocupar o endereço escolhido. Enquanto estiver em rascunho, a página atual continua no ar.
+Seções disponíveis: abertura/banner, texto, imagem com texto, galeria, vitrine de imóveis/empreendimentos/artigos, chamada para contato, newsletter e formulário de contato. Os campos de título e texto da newsletter aparecem no site. Ao publicar uma página, ela passa a ocupar o endereço escolhido. Enquanto estiver em rascunho, a página atual continua no ar. A página de Privacidade é um rascunho e deve ser revisada e completada pelo responsável antes de ser publicada.
 
 Imóveis, empreendimentos e artigos continuam sendo cadastrados nas áreas próprias do CMS; o bloco **Vitrine de conteúdo** apenas escolhe qual coleção mostrar e quantos itens aparecem.
 

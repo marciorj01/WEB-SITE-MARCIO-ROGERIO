@@ -85,7 +85,12 @@ export function VisualPageClient({
             </section>
           )
         }
-        if (section.blockType === 'newsletter') return <div key={key}><Newsletter /></div>
+        if (section.blockType === 'newsletter')
+          return (
+            <div key={key}>
+              <Newsletter title={section.title} text={section.text} />
+            </div>
+          )
         if (section.blockType === 'contactForm') return (
           <section key={key} className={`${container} grid gap-10 py-16 md:grid-cols-2 md:py-24`}>
             <div>
