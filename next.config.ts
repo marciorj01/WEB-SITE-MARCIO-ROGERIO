@@ -54,7 +54,7 @@ const nextConfig: NextConfig = {
   enablePrerenderSourceMaps: false,
   experimental: {
     // Caps static build workers (~250-380 MB each) to lower `next build` peak memory
-    cpus: 2,
+    cpus: 1,
     serverActions: {
       allowedOrigins: [
         'localhost:3000',

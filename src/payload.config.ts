@@ -43,6 +43,7 @@ const databaseAdapter = databaseUri
   ? postgresAdapter({
       pool: {
         connectionString: databaseUri,
+        max: 1,
         ssl: {
           rejectUnauthorized: false,
         },
