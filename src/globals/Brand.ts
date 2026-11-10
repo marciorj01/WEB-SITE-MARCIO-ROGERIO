@@ -39,10 +39,11 @@ export const Brand: GlobalConfig = {
     },
     {
       name: 'heroVideoUrl',
-      label: 'Ou URL externa do vídeo (MP4)',
+      label: 'Ou link externo do vídeo (MP4 ou YouTube)',
       type: 'text',
       admin: {
-        description: 'Exemplo: link direto para um vídeo MP4 na nuvem ou pasta local.',
+        description:
+          'Cole um link direto de MP4/WebM ou um link compartilhável do YouTube. Vídeos não listados podem ser incorporados se a incorporação estiver habilitada no YouTube.',
       },
     },
     {
@@ -75,8 +76,12 @@ export const Brand: GlobalConfig = {
         },
         {
           name: 'videoUrl',
-          label: 'Ou link direto do vídeo (MP4)',
+          label: 'Ou link do vídeo (MP4 ou YouTube)',
           type: 'text',
+          admin: {
+            description:
+              'Aceita link direto de MP4/WebM ou link compartilhável do YouTube; a incorporação precisa estar habilitada no YouTube.',
+          },
         },
         { name: 'caption', label: 'Legenda / Nome do Empreendimento', type: 'text' },
       ],

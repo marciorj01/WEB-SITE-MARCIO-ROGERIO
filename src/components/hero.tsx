@@ -5,12 +5,67 @@ import type { Brand } from '@/payload-types'
 import { ButtonLink, Eyebrow, MediaImage, container } from './ui'
 import { Icon } from './icons'
 
+type VideoSource = { kind: 'file'; url: string } | { kind: 'youtube'; url: string }
+
 function getMediaUrl(media: unknown, fallbackUrl?: string | null): string | null {
   if (fallbackUrl) return fallbackUrl
   if (media && typeof media === 'object' && 'url' in media && typeof (media as { url: string }).url === 'string') {
     return (media as { url: string }).url
   }
   return null
+}
+
+function getVideoSource(media: unknown, fallbackUrl?: string | null): VideoSource | null {
+  const url = getMediaUrl(media, fallbackUrl)
+  if (!url) return null
+
+  try {
+    const parsed = new URL(url)
+    const host = parsed.hostname.replace(/^www\./, '').toLowerCase()
+    let videoId: string | null = null
+
+    if (host === 'youtu.be') {
+      videoId = parsed.pathname.split('/').filter(Boolean)[0] ?? null
+    } else if (host === 'youtube.com' || host === 'm.youtube.com' || host === 'youtube-nocookie.com') {
+      videoId =
+        parsed.searchParams.get('v') ??
+        parsed.pathname.match(/^\/(?:embed|shorts|live)\/([^/]+)/)?.[1] ??
+        null
+    }
+
+    if (videoId && /^[\w-]{11}$/.test(videoId)) {
+      const embed = new URL(`https://www.youtube-nocookie.com/embed/${videoId}`)
+      embed.search = new URLSearchParams({
+        autoplay: '1',
+        controls: '0',
+        loop: '1',
+        modestbranding: '1',
+        mute: '1',
+        playlist: videoId,
+        playsinline: '1',
+        rel: '0',
+      }).toString()
+      return { kind: 'youtube', url: embed.toString() }
+    }
+  } catch {
+    // Keep the original source for direct MP4/WebM URLs that lack a full origin.
+  }
+
+  return { kind: 'file', url }
+}
+
+function YouTubeBackground({ src, title }: { src: string; title: string }) {
+  return (
+    <iframe
+      src={src}
+      title={title}
+      aria-hidden="true"
+      tabIndex={-1}
+      allow="autoplay; encrypted-media; picture-in-picture"
+      referrerPolicy="strict-origin-when-cross-origin"
+      className="absolute top-1/2 left-1/2 h-[56.25vw] min-h-full w-[177.78vh] min-w-full -translate-x-1/2 -translate-y-1/2 border-0"
+    />
+  )
 }
 
 export function HomeHero({
@@ -24,7 +79,7 @@ export function HomeHero({
 }) {
   const [active, setActive] = useState(0)
   const items = slides ?? []
-  const mainVideoSrc = getMediaUrl(video, videoUrl)
+  const mainVideo = getVideoSource(video, videoUrl)
 
   return (
     <section
@@ -32,22 +87,26 @@ export function HomeHero({
       aria-label="Marcio Rogério — novas perspectivas"
     >
       <div className="absolute inset-0 -z-20 overflow-hidden" data-parallax>
-        {mainVideoSrc ? (
-          <video
-            src={mainVideoSrc}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="h-full w-full object-cover"
-          />
+        {mainVideo ? (
+          mainVideo.kind === 'youtube' ? (
+            <YouTubeBackground src={mainVideo.url} title="Vídeo principal do banner" />
+          ) : (
+            <video
+              src={mainVideo.url}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="h-full w-full object-cover"
+            />
+          )
         ) : items.length ? (
           items.map((slide: any, i: number) => {
             const isVideo =
               slide.mediaType === 'video' ||
               Boolean(slide.videoUrl) ||
               Boolean(slide.video && typeof slide.video === 'object')
-            const slideVideoSrc = isVideo ? getMediaUrl(slide.video, slide.videoUrl) : null
+            const slideVideo = isVideo ? getVideoSource(slide.video, slide.videoUrl) : null
 
             return (
               <div
@@ -55,9 +114,14 @@ export function HomeHero({
                 aria-hidden={i !== active}
                 className={`absolute inset-0 transition-opacity duration-[1400ms] ${i === active ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
               >
-                {isVideo && slideVideoSrc ? (
+                {isVideo && slideVideo?.kind === 'youtube' ? (
+                  <YouTubeBackground
+                    src={slideVideo.url}
+                    title={slide.caption || `Vídeo do banner ${i + 1}`}
+                  />
+                ) : isVideo && slideVideo ? (
                   <video
-                    src={slideVideoSrc}
+                    src={slideVideo.url}
                     autoPlay
                     loop
                     muted
@@ -123,7 +187,7 @@ export function HomeHero({
           Novos caminhos, logo abaixo
         </a>
 
-        {!mainVideoSrc && items.length > 0 && (
+        {!mainVideo && items.length > 0 && (
           <div className="hidden items-center gap-5 md:flex">
             <span
               className="mr-6 text-right text-[9px] leading-5 tracking-[.07em] text-white/70"
@@ -145,7 +209,7 @@ export function HomeHero({
           </div>
         )}
 
-        {!mainVideoSrc && items.length > 1 && (
+        {!mainVideo && items.length > 1 && (
           <div className="flex gap-2">
             <button
               aria-label="Slide anterior"
