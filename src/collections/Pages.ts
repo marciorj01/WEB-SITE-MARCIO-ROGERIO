@@ -92,6 +92,13 @@ export const Pages: CollectionConfig = {
           slug: 'newsletter', labels: { singular: 'Inscrição na newsletter', plural: 'Inscrições na newsletter' },
           fields: [{ name: 'title', label: 'Título', type: 'text' }, { name: 'text', label: 'Texto', type: 'textarea' }],
         },
+        {
+          slug: 'contactForm', labels: { singular: 'Formulário de contato', plural: 'Formulários de contato' },
+          fields: [
+            { name: 'title', label: 'Título da seção', type: 'text' },
+            { name: 'text', label: 'Texto de apresentação', type: 'textarea' },
+          ],
+        },
       ],
     },
   ],

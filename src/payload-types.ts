@@ -576,7 +576,7 @@ export interface Page {
   /**
    * Arraste as seções para reordenar. Cada bloco pode ser editado sem mexer em código.
    */
-  sections?: (Hero | Editorial | ImageText | Gallery | Listing | Cta | Newsletter)[] | null;
+  sections?: (Hero | Editorial | ImageText | Gallery | Listing | Cta | Newsletter | ContactForm)[] | null;
   createdBy?: {
     relationTo: 'admins';
     value: number | Admin;
@@ -691,6 +691,17 @@ export interface Newsletter {
   id?: string | null;
   blockName?: string | null;
   blockType: 'newsletter';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactForm".
+ */
+export interface ContactForm {
+  title?: string | null;
+  text?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contactForm';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1179,6 +1190,14 @@ export interface PagesSelect<T extends boolean = true> {
               blockName?: T;
             };
         newsletter?:
+          | T
+          | {
+              title?: T;
+              text?: T;
+              id?: T;
+              blockName?: T;
+            };
+        contactForm?:
           | T
           | {
               title?: T;

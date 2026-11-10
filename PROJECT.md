@@ -17,8 +17,8 @@ Identidade editorial e visual do site de Marcio Rogério, editável no Payload.
 
 ## Ciclo de conteúdo
 
-As páginas institucionais mantêm a apresentação atual até que uma página visual
-seja criada e publicada no CMS. As consultas públicas compartilhadas e as listas/detalhes editoriais utilizam `unstable_cache`.
+As páginas institucionais mantêm a apresentação atual até que a versão visual
+em rascunho seja publicada no CMS. As consultas públicas compartilhadas e as listas/detalhes editoriais utilizam `unstable_cache`.
 Artigos, imóveis e empreendimentos têm rascunho/publicação.
 Alterações e exclusões invalidam a lista, o slug anterior e o atual.
 Alterações em mídia, autoria, categorias e identidade também invalidam os

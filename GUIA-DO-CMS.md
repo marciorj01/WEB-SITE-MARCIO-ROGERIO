@@ -14,9 +14,9 @@ Este guia prático foi criado para orientar você no uso diário do painel admin
 
 ## 🧩 2. Editor visual das páginas
 
-Em **Construtor visual > Páginas visuais**, crie uma página e selecione o endereço que ela substituirá. Adicione seções, edite textos e imagens e arraste os blocos para mudar a ordem. A prévia ao vivo mostra as alterações antes da publicação; use os botões de celular, tablet e computador para conferir os tamanhos.
+Em **Construtor visual > Páginas visuais**, já existem rascunhos iniciais das páginas principais. Abra um rascunho para editar os textos, imagens e seções; arraste os blocos para mudar a ordem. A prévia ao vivo mostra as alterações antes da publicação; use os botões de celular, tablet e computador para conferir os tamanhos.
 
-Seções disponíveis: abertura/banner, texto, imagem com texto, galeria, vitrine de imóveis/empreendimentos/artigos, chamada para contato e newsletter. Ao publicar a página, ela passa a ocupar o endereço escolhido. Antes disso, a página atual continua no ar. Os formulários de contato continuam gerenciados pela estrutura padrão das páginas de contato.
+Seções disponíveis: abertura/banner, texto, imagem com texto, galeria, vitrine de imóveis/empreendimentos/artigos, chamada para contato, newsletter e formulário de contato. Ao publicar uma página, ela passa a ocupar o endereço escolhido. Enquanto estiver em rascunho, a página atual continua no ar.
 
 Imóveis, empreendimentos e artigos continuam sendo cadastrados nas áreas próprias do CMS; o bloco **Vitrine de conteúdo** apenas escolhe qual coleção mostrar e quantos itens aparecem.
 

@@ -83,6 +83,7 @@ export const revalidateBrand: GlobalAfterChangeHook = async ({ doc, req }) => {
 }
 
 export const revalidateSitePage: CollectionAfterChangeHook = async ({ doc, previousDoc, req }) => {
+  if ((req.context as Record<string, unknown>)?.skipSitePageRevalidation === true) return doc
   const paths = [...new Set([doc?.path, previousDoc?.path].filter((path): path is string => Boolean(path)))]
   await invalidate(req, ['site-pages', 'media'], paths)
   return doc

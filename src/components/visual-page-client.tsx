@@ -3,7 +3,7 @@
 import { useLivePreview } from '@payloadcms/live-preview-react'
 import type { Article, Development, Property } from '@/payload-types'
 import { ArticleCard, DevelopmentCard, PropertyCard } from '@/components/cards'
-import { Newsletter } from '@/components/forms'
+import { ContactForm, Newsletter } from '@/components/forms'
 import { ButtonLink, Eyebrow, MediaImage, container } from '@/components/ui'
 import type { VisualPage, VisualSection } from './visual-page'
 
@@ -86,6 +86,15 @@ export function VisualPageClient({
           )
         }
         if (section.blockType === 'newsletter') return <div key={key}><Newsletter /></div>
+        if (section.blockType === 'contactForm') return (
+          <section key={key} className={`${container} grid gap-10 py-16 md:grid-cols-2 md:py-24`}>
+            <div>
+              {section.title && <h2 className="max-w-xl font-display text-4xl leading-tight md:text-5xl">{section.title}</h2>}
+              {section.text && <p className="mt-5 max-w-md text-sm leading-7 text-muted">{section.text}</p>}
+            </div>
+            <ContactForm />
+          </section>
+        )
         if (section.blockType === 'cta') return (
           <section key={key} className={`${tone} py-16 md:py-24`}>
             <div className={`${container} text-center`}>
