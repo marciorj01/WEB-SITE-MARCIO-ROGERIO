@@ -1,14 +1,17 @@
+import { renderVisualPage } from '@/components/visual-page'
 import type { Metadata } from 'next'
 import { getBrand } from '@/lib/content'
 import { ContactCTA } from '@/components/contact-cta'
 import { Breadcrumbs, Eyebrow, MediaImage, container } from '@/components/ui'
 
 export const metadata: Metadata = {
-  title: 'Sobre | O olhar por trás da Vértice',
+  title: 'Sobre | O olhar de Marcio Rogério',
   description:
     'Uma consultoria que conecta pessoas, patrimônio e possibilidades com escuta, curadoria e perspectiva.',
 }
 export default async function AboutPage() {
+  const visualPage = await renderVisualPage('/sobre')
+  if (visualPage) return visualPage
   const brand = await getBrand()
   return (
     <main id="main-content">
@@ -28,7 +31,8 @@ export default async function AboutPage() {
               mudando e o que você deseja construir daqui para frente.
             </p>
             <p className="mt-5 max-w-md text-[12px] leading-7 text-muted">
-              É desse encontro entre escuta e perspectiva que nasce a proposta da Vértice: uma
+              É desse encontro entre escuta e perspectiva que nasce a consultoria imobiliária de
+              Marcio Rogério: uma
               consultoria imobiliária com um olhar atento às pessoas, à arquitetura e ao patrimônio.
             </p>
           </div>

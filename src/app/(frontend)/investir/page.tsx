@@ -1,3 +1,4 @@
+import { renderVisualPage } from '@/components/visual-page'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getArticles, getBrand, getProperties } from '@/lib/content'
@@ -7,11 +8,13 @@ import { Icon } from '@/components/icons'
 import { ButtonLink, Eyebrow, MediaImage, SectionHeading, container } from '@/components/ui'
 
 export const metadata: Metadata = {
-  title: 'Investir | Estratégia patrimonial Vértice',
+  title: 'Investir | Estratégia patrimonial | Marcio Rogério',
   description:
     'Investir em imóveis com visão de longo prazo, análise e uma estratégia alinhada ao seu perfil.',
 }
 export default async function InvestPage() {
+  const visualPage = await renderVisualPage('/investir')
+  if (visualPage) return visualPage
   const [brand, properties, articles] = await Promise.all([
     getBrand(),
     getProperties(),
@@ -180,7 +183,7 @@ export default async function InvestPage() {
                 <em>é patrimônio.</em>
               </>
             }
-            link={{ href: '/conteudo', label: 'Leia a revista Vértice' }}
+            link={{ href: '/conteudo', label: 'Leia nossos conteúdos imobiliários' }}
           />
           <div className="grid gap-10 md:grid-cols-2">
             {reading.map((article) => (

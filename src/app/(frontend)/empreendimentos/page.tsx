@@ -1,3 +1,4 @@
+import { renderVisualPage } from '@/components/visual-page'
 import type { Metadata } from 'next'
 import { getDevelopments } from '@/lib/content'
 import { DevelopmentCard } from '@/components/cards'
@@ -5,10 +6,12 @@ import { ContactCTA } from '@/components/contact-cta'
 import { ButtonLink, EmptyState, Eyebrow, MediaImage, container } from '@/components/ui'
 
 export const metadata: Metadata = {
-  title: 'Empreendimentos | Projetos selecionados Vértice',
+  title: 'Empreendimentos | Projetos selecionados Marcio Rogério',
   description: 'Uma seleção de projetos com arquitetura, contexto e novas perspectivas para viver.',
 }
 export default async function DevelopmentsPage() {
+  const visualPage = await renderVisualPage('/empreendimentos')
+  if (visualPage) return visualPage
   const developments = await getDevelopments()
   return (
     <main id="main-content">

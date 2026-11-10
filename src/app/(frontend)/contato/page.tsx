@@ -1,3 +1,4 @@
+import { renderVisualPage } from '@/components/visual-page'
 import type { Metadata } from 'next'
 import { getBrand } from '@/lib/content'
 import { ContactForm } from '@/components/forms'
@@ -10,6 +11,8 @@ export const metadata: Metadata = {
     'Conte seus planos. Solicite atendimento para comprar, investir, vender ou conhecer projetos selecionados.',
 }
 export default async function ContactPage() {
+  const visualPage = await renderVisualPage('/contato')
+  if (visualPage) return visualPage
   const brand = await getBrand()
   return (
     <main id="main-content" className={`${container} pt-8 pb-20 md:pt-10 md:pb-24`}>

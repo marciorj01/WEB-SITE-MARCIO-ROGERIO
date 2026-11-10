@@ -278,7 +278,7 @@ export function Newsletter({ compact = false }: { compact?: boolean }) {
     >
       <div className={`${container} reveal grid gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-20`}>
         <div>
-          <Eyebrow className="mb-5">Carta Vértice</Eyebrow>
+          <Eyebrow className="mb-5">Carta imobiliária de Marcio Rogério</Eyebrow>
           <h2 className="font-display text-[37px] leading-[1.13] md:text-[43px]">
             Um novo olhar.
             <br />
@@ -286,7 +286,7 @@ export function Newsletter({ compact = false }: { compact?: boolean }) {
           </h2>
           <p className="mt-5 max-w-sm text-[11px] leading-6 text-muted">
             Inteligência imobiliária para decisões mais estratégicas. Mercado, arquitetura e
-            patrimônio, com a curadoria da Vértice.
+            patrimônio, com a curadoria de Marcio Rogério.
           </p>
         </div>
         <div className="self-center">
@@ -364,7 +364,7 @@ export function Newsletter({ compact = false }: { compact?: boolean }) {
                   className="mt-1 size-3 shrink-0 accent-navy"
                 />
                 <span>
-                  Quero receber conteúdos da Vértice e concordo com a{' '}
+                  Quero receber conteúdos de Marcio Rogério e concordo com a{' '}
                   <Link href="/privacidade" className="underline underline-offset-2">
                     Política de Privacidade
                   </Link>

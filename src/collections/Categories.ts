@@ -5,7 +5,7 @@ import { revalidateShared, revalidateSharedDelete } from '@/hooks/revalidate'
 export const Categories: CollectionConfig = {
   slug: 'categories',
   labels: { singular: 'Categoria editorial', plural: 'Categorias editoriais' },
-  admin: { useAsTitle: 'name', group: 'Revista Vértice' },
+  admin: { useAsTitle: 'name', group: 'Conteúdo editorial' },
   access: { read: () => true, create: adminOnly, update: adminOnly, delete: adminOnly },
   hooks: { afterChange: [revalidateShared], afterDelete: [revalidateSharedDelete] },
   fields: [

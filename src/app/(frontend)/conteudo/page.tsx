@@ -1,3 +1,4 @@
+import { renderVisualPage } from '@/components/visual-page'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getArticles, getCategories } from '@/lib/content'
@@ -9,11 +10,13 @@ import { Icon } from '@/components/icons'
 import { ButtonLink, Eyebrow, MediaImage, SectionHeading, container } from '@/components/ui'
 
 export const metadata: Metadata = {
-  title: 'Revista Vértice | Conhecimento e perspectivas',
+  title: 'Conteúdo imobiliário | Marcio Rogério | Conhecimento e perspectivas',
   description:
     'Arquitetura, mercado, investimentos e patrimônio. Uma revista para escolher melhor e construir novas perspectivas.',
 }
 export default async function ContentPage() {
+  const visualPage = await renderVisualPage('/conteudo')
+  if (visualPage) return visualPage
   const [articles, categories] = await Promise.all([getArticles(), getCategories()])
   const feature = articles.find((article) => article.featured) || articles[0]
   const secondary = articles
@@ -42,7 +45,7 @@ export default async function ContentPage() {
             <br />
             Inteligência para construir patrimônio.
             <br />
-            <span className="text-navy">A revista da Vértice.</span>
+            <span className="text-navy">Conteúdo imobiliário de Marcio Rogério.</span>
           </p>
         </div>
       </section>
@@ -120,7 +123,7 @@ export default async function ContentPage() {
       <section id="materiais" className={`${container} py-20 md:py-24`}>
         <div className="reveal grid gap-10 lg:grid-cols-[.85fr_1.5fr] lg:gap-20">
           <div>
-            <Eyebrow className="mb-6">Biblioteca Vértice</Eyebrow>
+            <Eyebrow className="mb-6">Guias e materiais exclusivos</Eyebrow>
             <h2 className="font-display text-[43px] leading-[1.07] md:text-[49px]">
               Para ir além
               <br />

@@ -107,7 +107,7 @@ export function MediaImage({
         aria-label={alt || 'Fotografia em preparação'}
         className={`absolute inset-0 flex items-center justify-center bg-stone-200 ${className}`}
       >
-        <span className="font-display text-4xl text-navy/30">V.</span>
+        <span className="font-display text-4xl text-navy/30">MR</span>
       </div>
     )
   return (

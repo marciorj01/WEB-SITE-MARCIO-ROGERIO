@@ -40,7 +40,7 @@ export function Footer({ brand }: { brand: Brand }) {
           </div>
           <div>
             <p className="mb-5 text-[9px] uppercase tracking-[.2em] text-champagne-light">
-              Universo Vértice
+              Conteúdo e perspectivas
             </p>
             <div className="flex flex-col items-start gap-3 text-[11px]">
               <Link href="/conteudo" className="hover:text-champagne-light">
@@ -84,7 +84,7 @@ export function Footer({ brand }: { brand: Brand }) {
         </div>
         <div className="flex flex-col justify-between gap-4 border-t border-white/10 pt-6 text-[9px] text-white/60 sm:flex-row">
           <p>
-            © {new Date().getFullYear()} {brand.name || 'Vértice'}. Todos os direitos reservados.
+            © {new Date().getFullYear()} {brand.name || 'Marcio Rogério'}. Todos os direitos reservados.
           </p>
           <p>Curadoria. Conhecimento. Conexão.</p>
           <Link href="/privacidade" className="hover:text-white">

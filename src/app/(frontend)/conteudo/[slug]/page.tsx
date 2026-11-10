@@ -26,10 +26,10 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>
 }): Promise<Metadata> {
   const article = await findBySlug('articles', (await params).slug)
-  if (!article) return { title: 'Artigo não encontrado | Vértice' }
+  if (!article) return { title: 'Artigo não encontrado | Marcio Rogério' }
   const cover = typeof article.cover === 'object' ? article.cover : null
   return {
-    title: `${article.title} | Revista Vértice`,
+    title: `${article.title} | Conteúdo imobiliário | Marcio Rogério`,
     description: article.subtitle,
     openGraph: {
       type: 'article',
@@ -77,7 +77,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             <div className="mt-8 flex flex-col justify-between gap-6 border-t border-line pt-6 sm:flex-row sm:items-center">
               <div>
                 <p className="mb-3 text-[10px] text-navy">
-                  Por {author?.name || 'Redação Vértice'}
+                  Por {author?.name || 'Redação Marcio Rogério'}
                 </p>
                 <ArticleMeta article={article} />
               </div>
@@ -154,14 +154,14 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               </div>
               <div className="mt-9 flex items-start gap-5 bg-sand/60 p-6 md:p-8">
                 <div className="relative flex size-14 shrink-0 items-center justify-center overflow-hidden rounded-full bg-navy font-display text-3xl text-champagne-light">
-                  {author?.portrait ? <MediaImage media={author.portrait} sizes="56px" /> : 'V.'}
+                  {author?.portrait ? <MediaImage media={author.portrait} sizes="56px" /> : 'MR'}
                 </div>
                 <div>
                   <p className="text-[8px] uppercase tracking-[.17em] text-gold-dark">
                     Quem escreve
                   </p>
                   <h2 className="mt-2 font-display text-[27px]">
-                    {author?.name || 'Redação Vértice'}
+                    {author?.name || 'Redação Marcio Rogério'}
                   </h2>
                   <p className="mt-3 text-[11px] leading-7 text-muted">
                     {author?.bio ||

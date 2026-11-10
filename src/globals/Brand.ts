@@ -162,7 +162,7 @@ export const Brand: GlobalConfig = {
       name: 'consultingEyebrow',
       label: 'Consultoria — chamada superior',
       type: 'text',
-      defaultValue: 'A perspectiva Vértice',
+      defaultValue: 'A perspectiva de Marcio Rogério',
     },
     {
       name: 'consultingImageEyebrow',

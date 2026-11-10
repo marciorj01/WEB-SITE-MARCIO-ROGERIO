@@ -62,16 +62,16 @@ export type SupportedTimezones =
   | 'Pacific/Fiji';
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "LexicalNodes_D0A2817A".
+ * via the `definition` "LexicalNodes_C1353120".
  */
-export type LexicalNodes_D0A2817A =
+export type LexicalNodes_C1353120 =
   | SerializedTextNode
   | SerializedTabNode
   | SerializedLineBreakNode
-  | SerializedParagraphNode<LexicalNodes_D0A2817A>
+  | SerializedParagraphNode<LexicalNodes_C1353120>
   | SerializedHorizontalRuleNode
   | SerializedUploadNode<'media'>
-  | SerializedQuoteNode<LexicalNodes_D0A2817A>
+  | SerializedQuoteNode<LexicalNodes_C1353120>
   | SerializedRelationshipNode<
       | 'admins'
       | 'folders'
@@ -83,16 +83,17 @@ export type LexicalNodes_D0A2817A =
       | 'developments'
       | 'leads'
       | 'newsletter-subscribers'
+      | 'pages'
       | 'payload-kv'
       | 'payload-locked-documents'
       | 'payload-preferences'
       | 'payload-migrations'
     >
-  | SerializedAutoLinkNode<LexicalNodes_D0A2817A, LexicalLinkFields>
-  | SerializedLinkNode<LexicalNodes_D0A2817A, LexicalLinkFields>
-  | SerializedListNode<LexicalNodes_D0A2817A>
-  | SerializedListItemNode<LexicalNodes_D0A2817A>
-  | SerializedHeadingNode<LexicalNodes_D0A2817A>;
+  | SerializedAutoLinkNode<LexicalNodes_C1353120, LexicalLinkFields>
+  | SerializedLinkNode<LexicalNodes_C1353120, LexicalLinkFields>
+  | SerializedListNode<LexicalNodes_C1353120>
+  | SerializedListItemNode<LexicalNodes_C1353120>
+  | SerializedHeadingNode<LexicalNodes_C1353120>;
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "LexicalNodes_3DE324E4".
@@ -123,6 +124,7 @@ export interface Config {
     developments: Development;
     leads: Lead;
     'newsletter-subscribers': NewsletterSubscriber;
+    pages: Page;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -142,6 +144,7 @@ export interface Config {
     developments: DevelopmentsSelect<false> | DevelopmentsSelect<true>;
     leads: LeadsSelect<false> | LeadsSelect<true>;
     'newsletter-subscribers': NewsletterSubscribersSelect<false> | NewsletterSubscribersSelect<true>;
+    pages: PagesSelect<false> | PagesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -369,10 +372,10 @@ export interface Article {
   order?: number | null;
   format?: ('article' | 'guide' | 'report' | 'sponsored') | null;
   sponsor?: string | null;
-  content: LexicalRichText<LexicalNodes_D0A2817A>;
+  content: LexicalRichText<LexicalNodes_C1353120>;
   pullquote?: string | null;
   inlineImage?: (number | null) | Media;
-  conclusion?: LexicalRichText<LexicalNodes_D0A2817A> | null;
+  conclusion?: LexicalRichText<LexicalNodes_C1353120> | null;
   contactPrompt?: string | null;
   createdBy?: {
     relationTo: 'admins';
@@ -549,6 +552,147 @@ export interface NewsletterSubscriber {
   createdAt: string;
 }
 /**
+ * Monte páginas por seções, altere a ordem e veja a prévia antes de publicar.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
+export interface Page {
+  id: number;
+  title: string;
+  /**
+   * Selecione a página pública que este conteúdo substituirá.
+   */
+  path:
+    | '/'
+    | '/comprar'
+    | '/investir'
+    | '/empreendimentos'
+    | '/vender'
+    | '/conteudo'
+    | '/sobre'
+    | '/contato'
+    | '/privacidade';
+  /**
+   * Arraste as seções para reordenar. Cada bloco pode ser editado sem mexer em código.
+   */
+  sections?: (Hero | Editorial | ImageText | Gallery | Listing | Cta | Newsletter)[] | null;
+  createdBy?: {
+    relationTo: 'admins';
+    value: number | Admin;
+  } | null;
+  updatedBy?: {
+    relationTo: 'admins';
+    value: number | Admin;
+  } | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Hero".
+ */
+export interface Hero {
+  eyebrow?: string | null;
+  title: string;
+  emphasis?: string | null;
+  text?: string | null;
+  image?: (number | null) | Media;
+  linkLabel?: string | null;
+  linkUrl?: string | null;
+  tone?: ('ivory' | 'navy' | 'paper') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'hero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Editorial".
+ */
+export interface Editorial {
+  eyebrow?: string | null;
+  title?: string | null;
+  text: string;
+  alignment?: ('left' | 'center') | null;
+  tone?: ('ivory' | 'navy' | 'paper') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'editorial';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageText".
+ */
+export interface ImageText {
+  image?: (number | null) | Media;
+  imagePosition?: ('left' | 'right') | null;
+  eyebrow?: string | null;
+  title: string;
+  text: string;
+  linkLabel?: string | null;
+  linkUrl?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'imageText';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Gallery".
+ */
+export interface Gallery {
+  title?: string | null;
+  images?:
+    | {
+        image?: (number | null) | Media;
+        caption?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'gallery';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Listing".
+ */
+export interface Listing {
+  source: 'properties' | 'developments' | 'articles';
+  eyebrow?: string | null;
+  title?: string | null;
+  limit?: number | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'listing';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Cta".
+ */
+export interface Cta {
+  eyebrow?: string | null;
+  title: string;
+  text?: string | null;
+  linkLabel?: string | null;
+  linkUrl?: string | null;
+  tone?: ('ivory' | 'navy' | 'paper') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'cta';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Newsletter".
+ */
+export interface Newsletter {
+  title?: string | null;
+  text?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'newsletter';
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
@@ -615,6 +759,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'newsletter-subscribers';
         value: number | NewsletterSubscriber;
+      } | null)
+    | ({
+        relationTo: 'pages';
+        value: number | Page;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -948,6 +1096,105 @@ export interface NewsletterSubscribersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages_select".
+ */
+export interface PagesSelect<T extends boolean = true> {
+  title?: T;
+  path?: T;
+  sections?:
+    | T
+    | {
+        hero?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              emphasis?: T;
+              text?: T;
+              image?: T;
+              linkLabel?: T;
+              linkUrl?: T;
+              tone?: T;
+              id?: T;
+              blockName?: T;
+            };
+        editorial?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              text?: T;
+              alignment?: T;
+              tone?: T;
+              id?: T;
+              blockName?: T;
+            };
+        imageText?:
+          | T
+          | {
+              image?: T;
+              imagePosition?: T;
+              eyebrow?: T;
+              title?: T;
+              text?: T;
+              linkLabel?: T;
+              linkUrl?: T;
+              id?: T;
+              blockName?: T;
+            };
+        gallery?:
+          | T
+          | {
+              title?: T;
+              images?:
+                | T
+                | {
+                    image?: T;
+                    caption?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        listing?:
+          | T
+          | {
+              source?: T;
+              eyebrow?: T;
+              title?: T;
+              limit?: T;
+              id?: T;
+              blockName?: T;
+            };
+        cta?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              text?: T;
+              linkLabel?: T;
+              linkUrl?: T;
+              tone?: T;
+              id?: T;
+              blockName?: T;
+            };
+        newsletter?:
+          | T
+          | {
+              title?: T;
+              text?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  createdBy?: T;
+  updatedBy?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
@@ -1174,7 +1421,8 @@ export interface CollectionQueryWidget {
       | 'properties'
       | 'developments'
       | 'leads'
-      | 'newsletter-subscribers';
+      | 'newsletter-subscribers'
+      | 'pages';
     where?:
       | {
           [k: string]: unknown;
@@ -1209,6 +1457,7 @@ export interface ActivityWidget {
           | 'developments'
           | 'leads'
           | 'newsletter-subscribers'
+          | 'pages'
         )[]
       | null;
   };

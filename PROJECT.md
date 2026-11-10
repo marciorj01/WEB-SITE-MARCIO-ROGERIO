@@ -1,7 +1,6 @@
-# Vértice — consultoria imobiliária
+# Marcio Rogério — consultoria imobiliária
 
-Identidade de demonstração, editável no Payload. Não representa uma empresa,
-corretor, estoque, parceria, endereço ou oferta comercial existente.
+Identidade editorial e visual do site de Marcio Rogério, editável no Payload.
 
 ## Plano de entrega
 
@@ -10,6 +9,7 @@ corretor, estoque, parceria, endereço ou oferta comercial existente.
 - [x] Identidade visual e componentes compartilhados.
 - [x] Início, Comprar, Investir, Empreendimentos, Vender, Conteúdo e Sobre.
 - [x] Páginas internas, materiais, contato e privacidade.
+- [x] Construtor visual de páginas com seções reordenáveis e prévia ao vivo.
 - [ ] Testes de navegação, filtros, formulários, acessibilidade e responsividade.
 - [ ] **Verify production delivery**: verificar build e tabela de rotas com
       `figma make verify-deploy`, visitar todas as páginas públicas em produção,
@@ -17,8 +17,8 @@ corretor, estoque, parceria, endereço ou oferta comercial existente.
 
 ## Ciclo de conteúdo
 
-As páginas institucionais têm apresentação estática. As consultas públicas
-compartilhadas e as listas/detalhes editoriais utilizam `unstable_cache`.
+As páginas institucionais mantêm a apresentação atual até que uma página visual
+seja criada e publicada no CMS. As consultas públicas compartilhadas e as listas/detalhes editoriais utilizam `unstable_cache`.
 Artigos, imóveis e empreendimentos têm rascunho/publicação.
 Alterações e exclusões invalidam a lista, o slug anterior e o atual.
 Alterações em mídia, autoria, categorias e identidade também invalidam os

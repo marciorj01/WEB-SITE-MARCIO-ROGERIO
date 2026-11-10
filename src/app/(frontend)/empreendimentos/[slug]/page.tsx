@@ -35,8 +35,8 @@ export async function generateMetadata({
   const development = await findBySlug('developments', (await params).slug)
   return {
     title: development
-      ? `${development.title} | Empreendimentos Vértice`
-      : 'Projeto não encontrado | Vértice',
+      ? `${development.title} | Empreendimentos | Marcio Rogério`
+      : 'Projeto não encontrado | Marcio Rogério',
     description: development?.description,
   }
 }

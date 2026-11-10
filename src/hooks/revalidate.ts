@@ -81,3 +81,14 @@ export const revalidateBrand: GlobalAfterChangeHook = async ({ doc, req }) => {
   await invalidate(req, ['site'], ['/'])
   return doc
 }
+
+export const revalidateSitePage: CollectionAfterChangeHook = async ({ doc, previousDoc, req }) => {
+  const paths = [...new Set([doc?.path, previousDoc?.path].filter((path): path is string => Boolean(path)))]
+  await invalidate(req, ['site-pages', 'media'], paths)
+  return doc
+}
+
+export const revalidateSitePageDelete: CollectionAfterDeleteHook = async ({ doc, req }) => {
+  await invalidate(req, ['site-pages', 'media'], doc?.path ? [doc.path] : [])
+  return doc
+}

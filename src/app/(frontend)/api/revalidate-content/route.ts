@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     !data.paths.every(
       (path) =>
         typeof path === 'string' &&
-        /^\/(?:|comprar|investir|empreendimentos(?:\/[a-z0-9-]+)?|imoveis\/[a-z0-9-]+|conteudo(?:\/[a-z0-9-]+)?)$/.test(
+        /^\/(?:|comprar|investir|vender|sobre|contato|privacidade|empreendimentos(?:\/[a-z0-9-]+)?|imoveis\/[a-z0-9-]+|conteudo(?:\/[a-z0-9-]+)?)$/.test(
           path,
         ),
     )

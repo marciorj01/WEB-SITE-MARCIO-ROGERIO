@@ -214,7 +214,7 @@ export function DevelopmentCard({
       </div>
       <div className="flex flex-col justify-center">
         <p className="mb-5 text-[10px] uppercase tracking-[.2em] text-gold-dark">
-          Projeto 0{index + 1} / Curadoria Vértice
+          Projeto 0{index + 1} / Curadoria imobiliária
         </p>
         <h2 className="font-display text-[47px] leading-tight">{development.title}</h2>
         <p className="mt-2 font-display text-2xl italic text-gold-dark">{development.subtitle}</p>

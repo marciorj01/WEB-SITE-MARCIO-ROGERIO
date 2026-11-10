@@ -1,9 +1,12 @@
+import { renderVisualPage } from '@/components/visual-page'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Breadcrumbs, Eyebrow, container } from '@/components/ui'
 
-export const metadata: Metadata = { title: 'Privacidade e proteção de dados | Vértice' }
-export default function PrivacyPage() {
+export const metadata: Metadata = { title: 'Privacidade e proteção de dados | Marcio Rogério' }
+export default async function PrivacyPage() {
+  const visualPage = await renderVisualPage('/privacidade')
+  if (visualPage) return visualPage
   return (
     <main id="main-content" className={`${container} pt-9 pb-24`}>
       <Breadcrumbs items={[{ label: 'Privacidade' }]} />

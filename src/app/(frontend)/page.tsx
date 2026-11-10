@@ -1,3 +1,4 @@
+import { renderVisualPage } from '@/components/visual-page'
 import Link from 'next/link'
 import { getArticles, getBrand, getProperties } from '@/lib/content'
 import { HomeHero } from '@/components/hero'
@@ -16,6 +17,8 @@ import {
 } from '@/components/ui'
 
 export default async function HomePage() {
+  const visualPage = await renderVisualPage('/')
+  if (visualPage) return visualPage
   const [brand, properties, articles] = await Promise.all([
     getBrand(),
     getProperties(),
@@ -104,7 +107,7 @@ export default async function HomePage() {
         </div>
         <div className="reveal flex flex-col justify-center px-7 py-16 sm:px-12 lg:px-[13%] lg:py-20">
           <Eyebrow light className="mb-7">
-            {brand.consultingEyebrow || 'A perspectiva Vértice'}
+            {brand.consultingEyebrow || 'A perspectiva de Marcio Rogério'}
           </Eyebrow>
           <h2 className="font-display text-[44px] leading-[1.07] tracking-[-.02em] md:text-[54px]">
             {brand.consultingTitle || 'Não é sobre encontrar um imóvel.'}
@@ -175,7 +178,7 @@ export default async function HomePage() {
       <section className="border-y border-line bg-paper py-20 md:py-24">
         <div className={container}>
           <SectionHeading
-            eyebrow="Revista Vértice / conhecimento que transforma"
+            eyebrow="Conhecimento imobiliário que transforma"
             title={
               <>
                 Um olhar além

@@ -32,7 +32,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const property = await findBySlug('properties', (await params).slug)
   return {
-    title: property ? `${property.title} | Curadoria Vértice` : 'Imóvel não encontrado | Vértice',
+    title: property ? `${property.title} | Curadoria de Marcio Rogério` : 'Imóvel não encontrado | Marcio Rogério',
     description: property?.description,
   }
 }

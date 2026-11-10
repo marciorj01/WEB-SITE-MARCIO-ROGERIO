@@ -8,11 +8,12 @@ export const contentTags = [
   'categories',
   'authors',
   'media',
+  'site-pages',
 ] as const
 export type ContentTag = (typeof contentTags)[number]
 
 export function signRevalidation(body: string, secret: string) {
-  return createHmac('sha256', secret).update(`vertice-content:${body}`).digest('hex')
+  return createHmac('sha256', secret).update(`marcio-content:${body}`).digest('hex')
 }
 
 export function verifyRevalidation(body: string, signature: string, secret: string) {

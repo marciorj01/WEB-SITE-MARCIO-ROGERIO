@@ -7,7 +7,7 @@ export const Articles: CollectionConfig = {
   labels: { singular: 'Artigo', plural: 'Artigos e materiais' },
   admin: {
     useAsTitle: 'title',
-    group: 'Revista Vértice',
+    group: 'Conteúdo editorial',
     defaultColumns: ['title', 'category', 'format', '_status'],
   },
   access: { read: publishedOnly, create: adminOnly, update: adminOnly, delete: adminOnly },

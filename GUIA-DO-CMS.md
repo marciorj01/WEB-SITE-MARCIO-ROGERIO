@@ -12,7 +12,17 @@ Este guia prático foi criado para orientar você no uso diário do painel admin
 
 ---
 
-## 🎬 2. Banner Principal: Fotos e Vídeos de Empreendimentos
+## 🧩 2. Editor visual das páginas
+
+Em **Construtor visual > Páginas visuais**, crie uma página e selecione o endereço que ela substituirá. Adicione seções, edite textos e imagens e arraste os blocos para mudar a ordem. A prévia ao vivo mostra as alterações antes da publicação; use os botões de celular, tablet e computador para conferir os tamanhos.
+
+Seções disponíveis: abertura/banner, texto, imagem com texto, galeria, vitrine de imóveis/empreendimentos/artigos, chamada para contato e newsletter. Ao publicar a página, ela passa a ocupar o endereço escolhido. Antes disso, a página atual continua no ar. Os formulários de contato continuam gerenciados pela estrutura padrão das páginas de contato.
+
+Imóveis, empreendimentos e artigos continuam sendo cadastrados nas áreas próprias do CMS; o bloco **Vitrine de conteúdo** apenas escolhe qual coleção mostrar e quantos itens aparecem.
+
+---
+
+## 🎬 3. Banner Principal: Fotos e Vídeos de Empreendimentos
 
 O banner do topo da página inicial agora permite exibir **fotos em alta resolução** ou **vídeos cinematográficos dos empreendimentos em loop**.
 
@@ -38,7 +48,7 @@ Você pode cadastrar até 6 slides que o visitante pode navegar pelas setas:
 
 ---
 
-## 📸 3. Central de Mídia (`Media`)
+## 📸 4. Central de Mídia (`Media`)
 
 O menu **Media** (segundo item no topo do menu lateral) funciona como a sua biblioteca geral de arquivos:
 * **Para subir arquivos em lote:** Clique em **Media** > botão azul **Criar Novo**;
@@ -48,7 +58,7 @@ O menu **Media** (segundo item no topo do menu lateral) funciona como a sua bibl
 
 ---
 
-## 🏡 4. Cadastrar Imóveis e Empreendimentos
+## 🏡 5. Cadastrar Imóveis e Empreendimentos
 
 Para adicionar imóveis à sua curadoria ou novos lançamentos na planta:
 
