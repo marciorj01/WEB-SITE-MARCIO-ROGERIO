@@ -166,16 +166,18 @@ export function SectionHeading({
 export function EmptyState({
   title = 'Uma nova seleção está sendo preparada.',
   text = 'Converse com nossa consultoria para encontrar referências alinhadas ao seu momento.',
+  linkLabel = 'Solicitar atendimento',
 }: {
   title?: string
   text?: string
+  linkLabel?: string
 }) {
   return (
     <div className="border-y border-line py-16 text-center">
       <h3 className="font-display text-3xl">{title}</h3>
       <p className="mx-auto mt-4 max-w-md text-sm leading-7 text-muted">{text}</p>
       <TextLink href="/contato" className="mt-5">
-        Solicitar atendimento
+        {linkLabel}
       </TextLink>
     </div>
   )

@@ -64,10 +64,15 @@ const segments = [
 export function PropertyCollection({
   properties,
   detailed = false,
+  segmentLabelsOverride,
+  emptyState,
 }: {
   properties: Property[]
   detailed?: boolean
+  segmentLabelsOverride?: Partial<typeof segmentLabels>
+  emptyState?: { title?: string; text?: string; linkLabel?: string }
 }) {
+  const labels = { ...segmentLabels, ...segmentLabelsOverride }
   const [active, setActive] = useState(detailed ? 'high' : 'all')
   useEffect(() => {
     if (!detailed) return
@@ -86,7 +91,7 @@ export function PropertyCollection({
       >
         {[
           ...(!detailed ? [{ key: 'all', label: 'Todos os imóveis' }] : []),
-          ...Object.entries(segmentLabels).map(([key, label]) => ({ key, label })),
+          ...Object.entries(labels).map(([key, label]) => ({ key, label })),
         ].map((tab) => (
           <button
             key={tab.key}
@@ -116,7 +121,7 @@ export function PropertyCollection({
               <MediaImage media={selected[0]?.image} sizes="(max-width: 1024px) 100vw, 50vw" />
             </div>
             <div className="flex flex-col justify-center px-6 py-8 lg:pr-12">
-              <Eyebrow className="mb-5">{segmentLabels[segment.key]}</Eyebrow>
+              <Eyebrow className="mb-5">{labels[segment.key]}</Eyebrow>
               <h2 className="font-display text-[42px] leading-[1.05] [&_em]:font-normal [&_em]:text-gold-dark">
                 {segment.title}
               </h2>
@@ -145,11 +150,11 @@ export function PropertyCollection({
         {selected.length ? (
           <div className="grid gap-x-7 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
             {(detailed ? selected : selected.slice(0, 3)).map((property) => (
-              <PropertyCard key={property.id} property={property} />
+              <PropertyCard key={property.id} property={property} segmentLabelsOverride={labels} />
             ))}
           </div>
         ) : (
-          <EmptyState />
+          <EmptyState {...emptyState} />
         )}
       </div>
     </div>

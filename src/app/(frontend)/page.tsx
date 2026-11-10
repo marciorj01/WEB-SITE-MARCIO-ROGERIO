@@ -54,23 +54,36 @@ export default async function HomePage() {
       </div>
       <section id="curadoria" className={`${container} py-20 md:py-24`}>
         <SectionHeading
-          eyebrow="Uma seleção, não apenas uma busca"
+          eyebrow={brand.homeCollectionEyebrow || 'Uma seleção, não apenas uma busca'}
           title={
             <>
-              Imóveis com identidade.
+              {brand.homeCollectionTitle || 'Imóveis com identidade.'}
               <br />
-              <em>Escolhas com significado.</em>
+              <em>{brand.homeCollectionTitleEmphasis || 'Escolhas com significado.'}</em>
             </>
           }
-          link={{ href: '/comprar', label: 'Conheça a curadoria completa' }}
+          link={{ href: '/comprar', label: brand.homeCollectionLinkLabel || 'Conheça a curadoria completa' }}
         />
-        <PropertyCollection properties={properties} />
+        <PropertyCollection
+          properties={properties}
+          segmentLabelsOverride={{
+            first: brand.homeSegmentFirstLabel || 'Primeiro imóvel',
+            medium: brand.homeSegmentMediumLabel || 'Médio padrão',
+            high: brand.homeSegmentHighLabel || 'Alto padrão',
+          }}
+          emptyState={{
+            title: brand.homeCollectionEmptyTitle || undefined,
+            text: brand.homeCollectionEmptyText || undefined,
+            linkLabel: brand.homeCollectionEmptyLinkLabel || undefined,
+          }}
+        />
         <div className="mt-10 flex items-center justify-between gap-6 border-t border-line pt-6">
           <p className="max-w-lg text-[10px] leading-6 text-muted">
-            Para cada momento de vida, um jeito de morar. Descubra o que faz sentido para o seu.
+            {brand.homeCollectionFooterText ||
+              'Para cada momento de vida, um jeito de morar. Descubra o que faz sentido para o seu.'}
           </p>
           <span className="hidden shrink-0 font-display text-[25px] italic text-gold-dark sm:block">
-            O essencial é pessoal.
+            {brand.homeCollectionFooterEmphasis || 'O essencial é pessoal.'}
           </span>
         </div>
       </section>
@@ -82,35 +95,34 @@ export default async function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-t from-navy/35 to-transparent" />
           <div className="absolute right-7 bottom-7 border border-white/50 p-5 text-right md:right-10 md:bottom-10">
             <p className="text-[8px] uppercase tracking-[.22em] text-white/75">
-              Nosso ponto de vista
+              {brand.consultingImageEyebrow || 'Nosso ponto de vista'}
             </p>
-            <p className="mt-2 font-display text-3xl italic">O valor está no olhar.</p>
+            <p className="mt-2 font-display text-3xl italic">
+              {brand.consultingImageCaption || 'O valor está no olhar.'}
+            </p>
           </div>
         </div>
         <div className="reveal flex flex-col justify-center px-7 py-16 sm:px-12 lg:px-[13%] lg:py-20">
           <Eyebrow light className="mb-7">
-            A perspectiva Vértice
+            {brand.consultingEyebrow || 'A perspectiva Vértice'}
           </Eyebrow>
           <h2 className="font-display text-[44px] leading-[1.07] tracking-[-.02em] md:text-[54px]">
-            Não é sobre
-            <br />
-            encontrar um imóvel.
+            {brand.consultingTitle || 'Não é sobre encontrar um imóvel.'}
             <br />
             <em className="font-normal text-champagne-light">
-              É sobre reconhecer
-              <br />o seu lugar.
+              {brand.consultingTitleEmphasis || 'É sobre reconhecer o seu lugar.'}
             </em>
           </h2>
           <p className="mt-6 max-w-sm text-[12px] leading-7 font-light text-white/65">
-            Entendemos que uma decisão imobiliária envolve muito mais do que metros quadrados.
-            Envolve planos, patrimônio e o jeito como você quer viver.
+            {brand.consultingText ||
+              'Entendemos que uma decisão imobiliária envolve muito mais do que metros quadrados. Envolve planos, patrimônio e o jeito como você quer viver.'}
           </p>
           <p className="mt-4 max-w-sm text-[12px] leading-7 font-light text-white/65">
-            Por isso, combinamos escuta, curadoria e visão de mercado para acompanhar cada escolha
-            com a atenção que ela merece.
+            {brand.consultingSecondaryText ||
+              'Por isso, combinamos escuta, curadoria e visão de mercado para acompanhar cada escolha com a atenção que ela merece.'}
           </p>
           <TextLink href="/sobre" light className="mt-7 self-start">
-            Conheça o nosso olhar
+            {brand.consultingLinkLabel || 'Conheça o nosso olhar'}
           </TextLink>
         </div>
       </section>

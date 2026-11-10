@@ -16,7 +16,15 @@ export const stageLabels = {
   ready: 'Pronto para morar',
 }
 
-export function PropertyCard({ property, large = false }: { property: Property; large?: boolean }) {
+export function PropertyCard({
+  property,
+  large = false,
+  segmentLabelsOverride,
+}: {
+  property: Property
+  large?: boolean
+  segmentLabelsOverride?: Partial<typeof segmentLabels>
+}) {
   return (
     <Link href={`/imoveis/${property.slug}`} className="group block">
       <div
@@ -28,7 +36,7 @@ export function PropertyCard({ property, large = false }: { property: Property; 
           className="transition-transform duration-1000 group-hover:scale-[1.035]"
         />
         <span className="absolute top-5 left-5 border border-white/40 bg-navy/60 px-3 py-1.5 text-[8px] uppercase tracking-[.16em] text-white backdrop-blur-sm">
-          {segmentLabels[property.segment]}
+          {(segmentLabelsOverride ?? segmentLabels)[property.segment]}
         </span>
         <span className="absolute right-4 bottom-4 flex size-10 items-center justify-center rounded-full border border-white/60 text-white transition-all group-hover:rotate-45 group-hover:bg-white group-hover:text-navy">
           <Icon name="diagonal" className="size-4" />

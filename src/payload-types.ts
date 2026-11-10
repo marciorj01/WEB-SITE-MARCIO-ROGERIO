@@ -1023,7 +1023,7 @@ export interface Brand {
    */
   heroVideo?: (number | null) | Media;
   /**
-   * Exemplo: link direto para um vídeo MP4 na nuvem ou pasta local.
+   * Cole um link direto de MP4/WebM ou um link compartilhável do YouTube. Vídeos não listados podem ser incorporados se a incorporação estiver habilitada no YouTube.
    */
   heroVideoUrl?: string | null;
   heroSlides?:
@@ -1031,11 +1031,34 @@ export interface Brand {
         mediaType?: ('image' | 'video') | null;
         image?: (number | null) | Media;
         video?: (number | null) | Media;
+        /**
+         * Aceita link direto de MP4/WebM ou link compartilhável do YouTube; a incorporação precisa estar habilitada no YouTube.
+         */
         videoUrl?: string | null;
         caption?: string | null;
         id?: string | null;
       }[]
     | null;
+  homeCollectionEyebrow?: string | null;
+  homeCollectionTitle?: string | null;
+  homeCollectionTitleEmphasis?: string | null;
+  homeCollectionLinkLabel?: string | null;
+  homeCollectionEmptyTitle?: string | null;
+  homeCollectionEmptyText?: string | null;
+  homeCollectionEmptyLinkLabel?: string | null;
+  homeCollectionFooterText?: string | null;
+  homeCollectionFooterEmphasis?: string | null;
+  homeSegmentFirstLabel?: string | null;
+  homeSegmentMediumLabel?: string | null;
+  homeSegmentHighLabel?: string | null;
+  consultingEyebrow?: string | null;
+  consultingImageEyebrow?: string | null;
+  consultingImageCaption?: string | null;
+  consultingTitle?: string | null;
+  consultingTitleEmphasis?: string | null;
+  consultingText?: string | null;
+  consultingSecondaryText?: string | null;
+  consultingLinkLabel?: string | null;
   consultingImage?: (number | null) | Media;
   investImage?: (number | null) | Media;
   sellImage?: (number | null) | Media;
@@ -1079,6 +1102,26 @@ export interface BrandSelect<T extends boolean = true> {
         caption?: T;
         id?: T;
       };
+  homeCollectionEyebrow?: T;
+  homeCollectionTitle?: T;
+  homeCollectionTitleEmphasis?: T;
+  homeCollectionLinkLabel?: T;
+  homeCollectionEmptyTitle?: T;
+  homeCollectionEmptyText?: T;
+  homeCollectionEmptyLinkLabel?: T;
+  homeCollectionFooterText?: T;
+  homeCollectionFooterEmphasis?: T;
+  homeSegmentFirstLabel?: T;
+  homeSegmentMediumLabel?: T;
+  homeSegmentHighLabel?: T;
+  consultingEyebrow?: T;
+  consultingImageEyebrow?: T;
+  consultingImageCaption?: T;
+  consultingTitle?: T;
+  consultingTitleEmphasis?: T;
+  consultingText?: T;
+  consultingSecondaryText?: T;
+  consultingLinkLabel?: T;
   consultingImage?: T;
   investImage?: T;
   sellImage?: T;
